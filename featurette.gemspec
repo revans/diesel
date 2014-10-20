@@ -9,10 +9,10 @@ Gem::Specification.new do |s|
   s.version         = Featurette.version
   s.author          = "Robert Evans"
   s.email           = "robert@codewranglers.org"
-  s.homepage        = "TODO: Put your gem's website or public URL here."
+  s.homepage        = "http://www.codewranglers.org"
   s.license         = "MIT-LICENSE"
-  s.summary         = "TODO: Write a short summary."
-  s.description     = "TODO: Write a longer description or delete this line."
+  s.summary         = "Rails Featurette"
+  s.description     = "Generate features for your rails application."
 
   s.files           = Dir["CHANGELOG.md", "README.md", "MIT-LICENSE", "lib/**/*"]
   s.executables     = Dir["bin/*"]
