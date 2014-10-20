@@ -1,0 +1,20 @@
+
+<%= form_for @user, url: perform_login_url(@user) do |f| %>
+  <div class=''>
+    <%= f.email_field :email, class: '', placeholder: 'Email Address' %>
+  </div>
+
+  <div class=''>
+    <%= f.password_field :password, class: '', placeholder: 'Password' %>
+  </div>
+
+  <div class=''>
+    <%= f.submit 'Login', class: '' %>
+  </div>
+<% end %>
+
+<div class=''>
+  <p>
+    No Account? <%= link_to 'Register one!', registration_url, class: '' %>
+  </p>
+</div>

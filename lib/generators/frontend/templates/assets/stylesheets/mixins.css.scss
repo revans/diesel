@@ -1,0 +1,194 @@
+
+//
+// Callout Variant - used to build the base of the callout
+//                   boxes
+//
+//   usage: @include callout-variant(#333);
+//
+// --------------------------------------------------------
+@mixin callout-variant($color) {
+  background-color:     lighten($color, 35%);
+  border-color:         $color;
+
+  h4 {
+    color:              $color;
+    margin-top:         0;
+    margin-bottom:      5px;
+  }
+
+  .callout-highlight {
+    background-color:   lighten($color, 35%);
+    padding:            2px;
+  }
+
+  .callout-highlight {
+    background-color:   lighten($color, 25%);
+    color:              #333;
+    padding:            5px;
+    border-radius:      3px;
+
+    &:hover {
+      background-color: darken($color, 25%);
+      color:            #eee;
+      text-decoration:  none;
+    }
+  }
+}
+
+
+
+
+
+// usage: @include circle(25px)
+@mixin circle($dimension) {
+  width:          $dimension;
+  height:         $dimension;
+  border-radius:  100%;
+}
+
+// usage: @include link-color($color)
+@mixin link-color($color) {
+  color: $color;
+
+  &:hover, &:active, &:focus {
+    color: lighten($color, 20%);
+  }
+}
+
+// usage: @include css3(transition, 0.5s)
+@mixin css3($property, $value) {
+  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {
+    #{$prefix}#{$property}: $value;
+  }
+}
+
+// usage: @include opacity(0.5)
+@mixin opacity($opacity) {
+  opacity:      $opacity;
+  $opacity-ie:  $opacity * 100;
+  filter:       alpha(opacity=$opacity-ie); //IE8
+}
+
+// usage: absolute(10px 5px 10px 5px)
+@mixin absolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top:      $top;
+  right:    $right;
+  bottom:   $bottom;
+  left:     $left;
+}
+
+// uses rems and falls back to px
+// usage: fontsize(12)
+@mixin fontsize($size: 24, $base: 16) {
+  font-size: $size + px;
+  font-size: ($size / $base) * 1rem;
+}
+
+// usage: line-height(12)
+@mixin line-height($heightValue: 12 ){
+  line-height: $heightValue + px; //fallback for old browsers
+  line-height: (0.125 * $heightValue) + rem;
+}
+
+
+
+
+
+// usage: @include center-block()
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// usage: @include text-truncate()
+@mixin text-truncate {
+  overflow:       hidden;
+  text-overflow:  ellipsis;
+  white-space:    nowrap;
+}
+
+// usage: @include box-emboss(0.8, 0.05)
+@mixin box-emboss($opacity, $opacity2){
+  box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}
+
+// usage: @include letterpress(0.5)
+@mixin letterpress($opacity) {
+  text-shadow: white($opacity) 0 1px 0;
+}
+
+
+
+
+
+// @include vertical-align()
+@mixin vertical-align {
+  position:           relative;
+  top:                50%;
+  -webkit-transform:  translateY(-50%);
+  -ms-transform:      translateY(-50%);
+  transform:          translateY(-50%);
+}
+
+
+@mixin box-shadow( $horiz : .5em , $vert : .5em , $blur : 0px , $spread : 0px , $color : #000000 ){
+  -webkit-box-shadow: $horiz $vert $blur $spread $color;
+  -moz-box-shadow:    $horiz $vert $blur $spread $color;
+  box-shadow:         $horiz $vert $blur $spread $color;
+}
+
+
+@mixin login-box {
+  margin-top:           50px;
+
+  .brand {
+    text-align:         center;
+    padding-bottom:     20px;
+
+    .logo {
+      height:           150px;
+
+      @media (max-width: $screen-xs-max) {
+       display:              block;
+       margin:               0 auto 45px auto;
+       height:               100px;
+      }
+
+    } // img
+
+    .company-name {
+      font-family:     "Helvetica";
+    }
+
+  } // .brand
+
+  .content {
+    margin-top:        35px;
+
+    input[type=text], input[type=password] {
+      height:          auto;
+      padding:         10px;
+    }
+
+    label {
+      padding-bottom:  5px;
+    }
+
+  } // .content
+
+  .footer {
+    text-align:         center;
+  } // .footer
+}
+
+@mixin inline-placement {
+  display:               inline;
+  vertical-align:        middle;
+
+  @media (max-width: $screen-xs-max) {
+   display:              block;
+   margin:               0 auto;
+  }
+}

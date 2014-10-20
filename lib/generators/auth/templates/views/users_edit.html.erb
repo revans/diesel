@@ -1,0 +1,22 @@
+
+<%= form_for @user do |f| %>
+  <div class=''>
+    <%= f.text_field :name, class: '', placeholder: 'First & Last Name' %>
+  </div>
+
+  <div class=''>
+    <%= f.email_field :email, class: '', placeholder: 'Email Address' %>
+  </div>
+
+  <div class=''>
+    <%= f.password_field :password, class: '', placeholder: 'Password' %>
+  </div>
+
+  <div class=''>
+    <%= f.password_field :password_confirmation, class: '', placeholder: 'Password Confirmation' %>
+  </div>
+
+  <div class=''>
+    <%= f.submit 'Update Profile', class: '' %>
+  </div>
+<% end %>

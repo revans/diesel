@@ -1,0 +1,177 @@
+# General Nginx Setup
+
+log_format main '$remote_addr - $remote_user [$time_local]  '
+    '"$request" $status $body_bytes_sent '
+    '"$http_referer" "$http_user_agent" "$http_cookie" "$http_header"';
+
+
+client_max_body_size      25m;
+client_body_buffer_size   128k;
+client_body_temp_path     /tmp/client_body_temp;
+
+
+## Gzip Configuration for the http { ... } section
+gzip_http_version         1.1;
+gzip_vary                 on;
+gzip_min_length           1100;
+gzip_buffers              64 8k;
+gzip_comp_level           3;
+gzip_proxied              any;
+gzip_types                text/plain text/css application/x-javascript text/xml application/xml;
+
+
+## SSL Configuration for the http { ... } section
+# ssl_session_cache         shared:SSL:10m;
+# ssl_session_timeout       10m;
+
+
+# Socket setup for Unicorn
+upstream rails_application {
+  server unix:/home/ubuntu/<%= application_name %>/tmp/sockets/<%= application_name %>.sock fail_timeout=0;
+}
+
+
+# Application Server Setup
+server {
+  listen                        80 default;
+  # listen                        443 ssl;
+  # server_name www.myapp.com;
+  # return 301 $scheme://myapp.com$request_uri;
+
+  root /home/ubuntu/<%= application_name %>/public;
+
+  ## Rewrite
+  # rewrite_log on;
+
+  ## log files
+  access_log    /home/ubuntu/<%= application_name %>/log/<%= application_name %>.log main;
+  error_log     /home/ubuntu/<%= application_name %>/log/<%= application_name %>.log;
+
+  client_max_body_size  4G;   # default is set to 1k for protection against buffer overflows
+  keepalive_timeout     10;   # default is set to 5 5 for performance
+
+  ## Prefer to serve static files directly from nginx to avoid unnecessary
+  ## data copies from the application server.
+  try_files     $uri/index.html $uri @rails_application;
+
+
+  ## Error Pages
+  error_page 500 504 /500.html;
+  error_page 502 /502.html;
+  error_page 503 /503.html;
+
+
+  ## SSL Configuration
+  # ssl_certificate               /home/ubuntu/<%= application_name %>/config/certs/server.crt;
+  # ssl_certificate_key           /home/ubuntu/<%= application_name %>/config/certs/server.key;
+
+  # ssl_protocols                 SSLv3 TLSv1 TLSv1.1 TLSv1.2;
+  # ssl_ciphers                   RC4:HIGH:!aNULL:!MD5;
+  # ssl_prefer_server_ciphers     on;
+
+
+  location @rails_application {
+
+    ## forward https traffic to puma/unicorn,
+    ## this helps Rack set the proper URL scheme for doing redirects
+    proxy_set_header            X-Forwarded-Proto $scheme;
+
+    ## pass the Host: header from the client right along so redirects can be set
+    ## properly within the Rack application
+    proxy_set_header            Host $http_host;
+
+    proxy_set_header            X-Real-IP $remote_addr;
+
+    ## http://en.wikipedia.org/wiki/X-Forwarded-For
+    proxy_set_header            X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    proxy_pass_request_headers  on;
+
+    ##  we don't want nginx trying to do something clever with redirects, we set
+    ## the Host: header above already.
+    proxy_redirect              off;
+
+
+    # If you don't find the filename in the static files
+    # Then request it from the puma/unicorn server
+    if (!-f $request_filename) {
+      proxy_pass http://rails_application;
+      break;
+    }
+
+    # set "proxy_buffering off" *only* for Rainbows! when doing
+    # Comet/long-poll/streaming.  It's also safe to set if you're using
+    # only serving fast clients with Unicorn + nginx, but not slow
+    # clients.  You normally want nginx to buffer responses to slow
+    # clients, even with Rails 3.1 streaming because otherwise a slow
+    # client can become a bottleneck of Unicorn.
+    #
+    # The Rack application may also set "X-Accel-Buffering (yes|no)"
+    # in the response headers do disable/enable buffering on a
+    # per-response basis.
+    # proxy_buffering off;
+  }
+
+
+  location ~* ^/assets/ {
+    root    /home/ubuntu/<%= application_name %>/public;
+
+    gzip_static   on;
+    expires       1y;
+    add_header    Cache-Control public;
+
+    add_header    Last-Modified "";
+    add_header    ETag "";
+
+    # caches open file descriptors, their sizes, modification times, and
+    # directory lookups. Helpful for high load on the file system.
+
+    # open_file_cache          max=1000 inactive=500s;
+    # open_file_cache_valid    600s;
+    # open_file_cache_errors   on;
+
+    break;
+  }
+
+
+  ## 500 Error Pages
+  error_page 500 502 503 504 /500.html;
+  location = /500.html {
+    root /home/ubuntu/<%= application_name %>/public;
+  }
+
+  # 404 Error Page
+  error_page 404  /404.html;
+  location = /404.html {
+    root /home/ubuntu/<%= application_name %>/public;
+  }
+
+
+  ## Maintenance Page
+  #
+  # this rewrites all the requests to the maintenance.html
+  # page if it exists in the doc root. This is for capistrano's
+  # disable web task
+  if (-f $document_root/system/maintenance.html) {
+    rewrite  ^(.*)$  /system/maintenance.html last;
+    break;
+  }
+
+  # Block all svn access
+  if ($request_uri ~* ^.*\.svn.*$) {
+     return 404;
+  }
+
+  # Block all git access
+  if ($request_uri ~* ^.*\.git.*$) {
+     return 404;
+  }
+
+  location /nginx_status {
+    stub_status on;
+    access_log off;
+    allow 127.0.0.1;
+    deny all;
+  }
+
+}

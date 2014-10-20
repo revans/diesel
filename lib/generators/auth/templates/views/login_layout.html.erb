@@ -1,0 +1,39 @@
+<%= render "doctype" %>
+  </head>
+  <body ng-app=''>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+
+    <main class='row login-box' role='main'>
+      <section class='col-xs-8 col-xs-offset-2'>
+
+        <section class='brand row'>
+          <h1 class='inline-placement company-name'>
+            <%= app_name %>
+          </h1>
+        </section>
+
+
+        <div class='flashes row'>
+          <%= render "flashes" %>
+        </div>
+
+
+        <section class='content row'>
+          <%= yield %>
+        </section>
+
+
+        <footer class='footer row'>
+          <small>&copy; <%= year %> <%= app_name %> @ <%= company_name %></small>
+        </footer>
+
+      </section>
+    </main>
+
+
+    <%= render "footer" %>
+  </body>
+</html>

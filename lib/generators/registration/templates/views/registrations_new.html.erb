@@ -1,0 +1,28 @@
+
+
+<%= form_for @user, url: create_registration_url do |f| %>
+
+  <div class=''>
+    <%= f.text_field :name, class: '', placeholder: 'First & Last Name' %>
+  </div>
+
+  <div class=''>
+    <%= f.email_field :email, class: '', placeholder: 'Email Address' %>
+  </div>
+
+  <div class=''>
+    <%= f.password_field :password, class: '', placeholder: 'Password' %>
+  </div>
+
+  <div class=''>
+    <%= f.password_field :password_confirmation, class: '', placeholder: 'Password Confirmation' %>
+  </div>
+
+  <div class=''>
+    <%= f.check_box :accept_terms, {}, true, false %> Yes, I accept the terms
+  </div>
+
+  <div class=''>
+    <%= f.submit 'Create Account', class: '' %>
+  </div>
+<% end %>

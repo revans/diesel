@@ -1,0 +1,12 @@
+
+/* Alert Flashes used to alert the user of their success/failure
+ * of their actions.
+-------------------------------------------------------------------*/
+
+.alert-error {
+  @extend .alert-danger;
+}
+
+.alert-notice {
+  @extend .alert-info;
+}

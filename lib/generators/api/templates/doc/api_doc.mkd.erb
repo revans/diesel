@@ -1,0 +1,54 @@
+# <%= application_name.humanize.titleize %>
+
+Application Urls
+
+* Staging Url: 		http://staging.myapi.com/
+* Production Url:  http://myapi.com
+
+Contents
+
+* [Authentication] (#authentication)
+* [Ping] (#ping)
+
+------------------------------------------------------------------------------------------------------------------------
+<a id="authentication"></a>
+
+
+## Authentication
+
+Token Authentication is required for all requests sent to the Api
+
+e.g.
+
+in the header, include:
+
+'HTTP_AUTHORIZATION: token'
+
+* Token: ...
+
+updated <%= Time.now.strftime("%Y.%m.%d") %>
+
+------------------------------------------------------------------------------------------------------------------------
+<a id="ping"></a>
+
+## Ping
+
+### GET /api/v1/ping
+
+### Request:
+Content-Type: application/json
+
+#### cURL:
+
+	curl -X GET -k -i -v -H "Content-Type: application/json" -H "Accept: application/vnd.company_name.project_name-v1+json" -H "AUTHORIZATION: token"  http://staging.myapi.com/api/v1/ping
+
+### Response:
+Content-Type: application/json
+
+#### Body:
+JSON
+current successful example:
+
+	"pong"
+
+updated <%= Time.now.strftime("%Y.%m.%d") %>

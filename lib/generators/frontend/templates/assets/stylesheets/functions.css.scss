@@ -1,0 +1,18 @@
+
+/* Custom Functions
+-------------------------------------------------------------------*/
+@function color-is-light($hex-color) {
+
+  $_red:    red(    rgba($hex-color, 1.0));
+  $_green:  green(  rgba($hex-color, 1.0));
+  $_blue:   blue(   rgba($hex-color, 1.0));
+
+  $_lightness: ($_red * 0.2126 + $_green * 0.7152 + $_blue * 0.0722) / 255;
+
+  @return $_lightness > .6;
+}
+
+@function calculate-rem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}

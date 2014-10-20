@@ -1,0 +1,14 @@
+<% if form.errors.any? %>
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <%= pluralize(form.errors.count, "error") %> prohibited this from being saved:
+    </div>
+    <div class="panel-body">
+      <% form.errors.full_messages.each do |msg| %>
+      <p>
+        <%= msg %>
+      </p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
