@@ -8,9 +8,6 @@ module Api
       # protect_from_forgery with: :null_session
       skip_before_action :verify_authenticity_token
 
-      # If using the responders gem for Rails 4.2
-      # respond_to :json
-
       # This provides a simple token
       # authentication system
       #

@@ -1,4 +1,4 @@
-require Rails.root.join("lib/api-test")
+require Rails.root.join("lib/api_test")
 
 namespace :api do
   desc "Ping the Api"

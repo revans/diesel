@@ -85,7 +85,7 @@ module Featurette
 
         def copy_api_config
           copy "config/api.yml",  "config/api.yml"
-          copy "lib/api-test.rb", "lib/api-test.rb"
+          copy "lib/api_test.rb", "lib/api_test.rb"
         end
 
 
