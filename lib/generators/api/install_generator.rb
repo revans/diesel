@@ -7,7 +7,7 @@ module Featurette
       class InstallGenerator < ::Rails::Generators::Base
         include ::Featurette::Actions
 
-        desc ""
+        desc "Api Building Foundation"
 
         source_root ::File.expand_path("../templates", __FILE__)
         class_option :template_engine
