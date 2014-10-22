@@ -16,6 +16,10 @@ module Api
       #
       before_action :authenticate
 
+      def api_config
+        ::Rails.application.config_for(:api)
+      end
+
       protected
 
       def authenticate
@@ -28,12 +32,12 @@ module Api
       end
 
       def render_unauthorized
-        self.headers['WWW-Authenticate'] = "Token realm=\"#{::Rails.configuration.x.company_name}\""
+        self.headers['WWW-Authenticate'] = "Token realm=\"#{api_config.company_name}\""
         render json: 'Bad credentials', status: 401
       end
 
       def authorized?(token)
-        ::Rails.configuration.x.api_token == token
+        api_config.token == token
       end
 
     end

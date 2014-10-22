@@ -19,6 +19,10 @@ module ApiAuthTestHelper
   # end
 
   def api_token
-    @api_token ||= ::Rails.configuration.x.api_token
+    @api_token ||= api_config.token
+  end
+
+  def api_config
+    @api_config ||= ::Rails.application.config_for(:api)
   end
 end

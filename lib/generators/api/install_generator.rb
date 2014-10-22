@@ -66,10 +66,6 @@ module Featurette
                     'app/controllers/api/v1/ping_controller.rb'
         end
 
-        # def copy_activemodel_serializer
-        #   copy_file "initializers/active_model_serializer.rb",
-        #             "config/initializers/active_model_serializer.rb"
-        # end
 
         def copy_api_test_helpers
           mkdir_p 'test/support'
@@ -84,6 +80,12 @@ module Featurette
           template  "doc/api_doc.mkd.erb",
                     'doc/api.mkd',
                     force: true
+        end
+
+
+        def copy_api_config
+          copy "config/api.yml",  "config/api.yml"
+          copy "lib/api-test.rb", "lib/api-test.rb"
         end
 
 

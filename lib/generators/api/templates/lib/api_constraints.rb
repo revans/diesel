@@ -21,10 +21,10 @@ class PrivateApiConstraints
   private
 
   def application_name
-    @application_name ||= ::Rails.configuration.x.app_name.downcase.gsub(/\s+/, '_')
+    @application_name ||= ::Rails.application.config_for(:api).app_name.downcase.gsub(/\s+/, '_')
   end
 
   def company_name
-    @company_name ||= ::Rails.configuration.x.company_name.downcase.gsub(/\s+/, '_')
+    @company_name ||= ::Rails.application.config_for(:api).company_name.downcase.gsub(/\s+/, '_')
   end
 end
