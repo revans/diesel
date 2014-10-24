@@ -12,6 +12,7 @@ require 'generators/geo/install_generator'
 require 'generators/mail_sandbox/install_generator'
 require 'generators/rails_gem/install_generator'
 require 'generators/registration/install_generator'
+require 'generators/flatui/install_generator'
 
 module Featurette
   module Generators
