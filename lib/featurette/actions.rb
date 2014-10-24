@@ -55,7 +55,7 @@ module Featurette
     #
     def add_import_to_stylesheet_manifest(filename, opts = {})
       log :import_stylesheet_into_manifest
-      sentinel  = "@import \"#{filename}\";\n"
+      sentinel  = "\n@import \"#{filename}\";"
       options   = { after: "@import \"#{opts[:after]}\";", verbose: false }
 
       in_root do

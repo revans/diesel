@@ -19,7 +19,7 @@ module Featurette # :nodoc
         def copy_css
           copy_file "css/flat-ui-pro.css.map",  "vendor/assets/stylesheets/flat-ui-pro.css.map"
           copy_file "css/flat-ui-pro.min.css",  "vendor/assets/stylesheets/flat-ui-pro.min.css"
-          copy_file "css/colors.css.scss",      "app/assets/stylesheets/helpers/flat_colors.css.scss"
+          copy_file "css/colors.css.sass",      "app/assets/stylesheets/helpers/flat_colors.css.sass"
         end
 
         def copy_fonts
