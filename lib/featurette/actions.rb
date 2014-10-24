@@ -59,7 +59,6 @@ module Featurette
       options   = { after: "@import \"#{opts[:after]}\";", verbose: false }
 
       in_root do
-        file = File.exists?(css_app) ? css_app : "#{css}.scss"
         inject_into_file "app/assets/stylesheets/application.css.scss", sentinel, options
       end
     end
