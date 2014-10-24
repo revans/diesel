@@ -17,8 +17,9 @@ module Featurette # :nodoc
         end
 
         def copy_css
-          copy_file "css/flat-ui-pro.css.map", "vendor/assets/stylesheets/flat-ui-pro.css.map"
-          copy_file "css/flat-ui-pro.min.css", "vendor/assets/stylesheets/flat-ui-pro.min.css"
+          copy_file "css/flat-ui-pro.css.map",  "vendor/assets/stylesheets/flat-ui-pro.css.map"
+          copy_file "css/flat-ui-pro.min.css",  "vendor/assets/stylesheets/flat-ui-pro.min.css"
+          copy_file "css/colors.css.scss",      "app/assets/stylesheets/helpers/flat_colors.css.scss"
         end
 
         def copy_fonts
@@ -36,7 +37,8 @@ module Featurette # :nodoc
         end
 
         def include_css
-          add_to_stylesheet_manifest 'flat-ui-pro.min', after: '@import "bootstrap";'
+          add_import_to_stylesheet_manifest "flat-ui-pro.min",      after: 'bootstrap'
+          add_import_to_stylesheet_manifest "helpers/flat_colors",  after: 'flat-ui-pro.min'
         end
 
         def include_js

@@ -46,7 +46,21 @@ module Featurette
       sentinel = options.has_key?(:after) ? " *= require #{filename}\n" : "\n *= require #{filename}"
 
       in_root do
-        inject_into_file 'app/assets/stylesheets/application.css', sentinel, options.merge(verobose: false)
+        inject_into_file 'app/assets/stylesheets/application.css', sentinel, options.merge(verbose: false)
+      end
+    end
+
+
+    # import_stylesheet_into_manifet "flat-ui-pro.min", after: "bootstrap"
+    #
+    def add_import_to_stylesheet_manifest(filename, after:, options = {})
+      log :import_stylesheet_into_manifest
+      sentinel  = "@import \"#{filename}\";\n"
+      options   = { after: "@import \"#{after}\";", verbose: false }
+
+      in_root do
+        file = File.exists?(css_app) ? css_app : "#{css}.scss"
+        inject_into_file "app/assets/stylesheets/application.css.scss", sentinel, options
       end
     end
 
