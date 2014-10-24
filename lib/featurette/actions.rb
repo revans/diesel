@@ -53,10 +53,10 @@ module Featurette
 
     # import_stylesheet_into_manifet "flat-ui-pro.min", after: "bootstrap"
     #
-    def add_import_to_stylesheet_manifest(filename, after:, options = {})
+    def add_import_to_stylesheet_manifest(filename, opts = {})
       log :import_stylesheet_into_manifest
       sentinel  = "@import \"#{filename}\";\n"
-      options   = { after: "@import \"#{after}\";", verbose: false }
+      options   = { after: "@import \"#{opts[:after]}\";", verbose: false }
 
       in_root do
         file = File.exists?(css_app) ? css_app : "#{css}.scss"
