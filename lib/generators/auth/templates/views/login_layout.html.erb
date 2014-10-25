@@ -5,35 +5,33 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <header class='header'>
+      <%= render 'nav' %>
+    </header>
 
-    <main class='row login-box' role='main'>
-      <section class='col-xs-8 col-xs-offset-2'>
-
-        <section class='brand row'>
-          <h1 class='inline-placement company-name'>
-            <%= app_name %>
-          </h1>
+    <main class='main-section' role='main'>
+      <div class='container'>
+        <section class='flash-messages'>
+          <%= render "flashes" %>
         </section>
 
-
-        <div class='flashes row'>
-          <%= render "flashes" %>
-        </div>
-
-
-        <section class='content row'>
+        <section class='row'>
           <%= yield %>
         </section>
-
-
-        <footer class='footer row'>
-          <small>&copy; <%= year %> <%= app_name %> @ <%= company_name %></small>
-        </footer>
-
-      </section>
+      </div>
     </main>
 
+    <div class='container'>
+      <hr />
+    </div>
+
+    <footer class='footer'>
+      <div class='container'>
+        <small>&copy; <%= year %> <%= app_name %> @ <%= company_name %></small>
+      </div>
+    </footer>
 
     <%= render "footer" %>
+
   </body>
 </html>

@@ -1,20 +1,32 @@
+<div class='alert alert-info fade in'>
+  <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>x</button>
+  You can 
+  <strong>
+    register an account
+    <%# link_to 'register an account', registration_url, class: '' %>
+  </strong> 
+  if you do not already have one.
+</div>
+
+
+<div class='page-header'>
+  <h3>Login into your Account</h3>
+</div>
+
+
+
 
 <%= form_for @user, url: perform_login_url(@user) do |f| %>
-  <div class=''>
-    <%= f.email_field :email, class: '', placeholder: 'Email Address' %>
+  <div class='form-group'>
+    <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
   </div>
 
-  <div class=''>
-    <%= f.password_field :password, class: '', placeholder: 'Password' %>
+  <div class='form-group'>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
   </div>
 
-  <div class=''>
-    <%= f.submit 'Login', class: '' %>
+  <div class='form-group'>
+    <%= f.submit 'Login', class: 'btn btn-primary' %>
   </div>
 <% end %>
 
-<div class=''>
-  <p>
-    No Account? <%= link_to 'Register one!', registration_url, class: '' %>
-  </p>
-</div>
