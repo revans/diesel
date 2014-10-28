@@ -3,21 +3,6 @@
  *= require_self
  */
 
-@charset "utf-8";
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
-@import "helpers/mixins";
-@import "helpers/functions";
-@import "helpers/fonts";
-@import "helpers/colors";
-@import "helpers/variables";
-@import "helpers/flashes";
-@import "helpers/utilities";
-@import "helpers/buttons";
-@import "helpers/base";
-
 /*
  * Helpful Docs for SASS functions/mixins:
  *  http://sass-lang.com/documentation/file.SASS_REFERENCE.html
@@ -27,4 +12,29 @@
  * http://www.flatuicolorpicker.com/all
  * http://patterntap.com/pattern/color-palette-flat-ui-colors
  *
+ * http://coolors.co/
  */
+
+
+@charset "utf-8";
+
+// Libraries
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+
+// Helpers
+@import "helpers/mixins";
+@import "helpers/fonts";
+@import "helpers/functions";
+@import "helpers/colors";
+@import "helpers/variables";
+@import "helpers/flashes";
+@import "helpers/utilities";
+@import "helpers/buttons";
+@import "helpers/base";
+
+
+// Features
+// @import "features/...";
