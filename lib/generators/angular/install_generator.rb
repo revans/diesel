@@ -77,7 +77,7 @@ module Featurette
                            after: "protect_from_forgery with: :exception") do
             <<-'RUBY'
 
-  after_filter :set_csrf_cookie_for_angular
+  after_action :set_csrf_cookie_for_angular
 
   private
 
@@ -118,12 +118,12 @@ module Featurette
 @App = angular.module('#{application_name.classify}', ['ngResource', 'ngSanitize', 'ngCookies'])
 
 @App.config ($httpProvider) ->
-  authToken = angular.element("meta[name=\\"csrf-token\\"]").attr("content")
-  $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
+  authToken = angular.element('meta[name="csrf-token"]').attr('content')
+  $httpProvider.defaults.headers.common['X-CSRF-TOKEN'] = authToken
   return
 
 $(document).on "ready page:load", ->
-  angular.bootstrap document.body, ["#{application_name.classify}"]
+  angular.bootstrap document.body, ['#{application_name.classify}']
   return
           CON
 
