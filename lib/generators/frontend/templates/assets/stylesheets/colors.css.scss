@@ -1,36 +1,501 @@
+/* Base Class Colors
+-------------------------------------------------------------------*/
+$highlighter-bg-color:                    #ffffd0;
 
 
 /* Flat UI Colors - http://flatuicolors.com/
 -------------------------------------------------------------------*/
-$turquoise:                             #1abc9c;
-$green-sea:                             #16a085;
-$sun-flowers:                           #f1c40f;
-$orange:                                #f39c12;
-$emerald:                               #2ecc71;
-$nephritis:                             #27ae60;
-$carrot:                                #e67e22;
-$pumpkin:                               #d35400;
-$peter-river:                           #3498db;
-$belize-hole:                           #2980b9;
-$alizarin:                              #e74c3c;
-$pomegranate:                           #c0392b;
-$amethyst:                              #9b59b6;
-$wisteria:                              #8e44ad;
-$clouds:                                #ecf0f1;
-$silver:                                #bdc3c7;
-$wet-asphalt:                           #34495e;
-$midnight-blue:                         #2c3e50;
-$concrete:                              #95a5a6;
-$asbestos:                              #7f8c8d;
-$white:                                 #fff;
+$turquoise:                               #1abc9c;
+$green-sea:                               #16a085;
+$sun-flowers:                             #f1c40f;
+$orange:                                  #f39c12;
+$emerald:                                 #2ecc71;
+$nephritis:                               #27ae60;
+$carrot:                                  #e67e22;
+$pumpkin:                                 #d35400;
+$peter-river:                             #3498db;
+$belize-hole:                             #2980b9;
+$alizarin:                                #e74c3c;
+$pomegranate:                             #c0392b;
+$amethyst:                                #9b59b6;
+$wisteria:                                #8e44ad;
+$clouds:                                  #ecf0f1;
+$silver:                                  #bdc3c7;
+$wet-asphalt:                             #34495e;
+$midnight-blue:                           #2c3e50;
+$concrete:                                #95a5a6;
+$asbestos:                                #7f8c8d;
+$white:                                   #fff;
 
 
-/* Base Class Colors
--------------------------------------------------------------------*/
-$highlighter-bg-color:                  #ffffd0;
+// Flat UI Colors - from http://www.flatuicolorpicker.com/all
+//-----------------------------------------------------------------
+$flat_chestnut_rose:                      #D24D57
+$flat_pomegranate:                        #F22613
+$flat_red:                                #FF0000
+$flat_thunderbird:                        #D91E18
+$flat_old_brick:                          #96281B
+$flat_flamingo:                           #EF4836
+$flat_valencia:                           #D64541
+$flat_tall_poppy:                         #C0392B
+$flat_monza:                              #CF000F
+$flat_cinnabar:                           #E74C3C
+$flat_razzmatazz:                         #DB0A5B
+$flat_derby:                              #FFECDB
+$flat_sunset_orange:                      #F64747
+$flat_wax_flower:                         #F1A9A0
+$flat_cabaret:                            #D2527F
+$flat_new_york_pink:                      #E08283
+$flat_radical_red:                        #F62459
+$flat_sunglo:                             #E26A6A
+$flat_snuff:                              #DCC6E0
+$flat_rebeccapurple:                      #663399
+$flat_honey_flower:                       #674172
+$flat_wistful:                            #AEA8D3
+$flat_plum:                               #913D88
+$flat_seance:                             #9A12B3
+$flat_medium_purple:                      #BF55EC
+$flat_light_wisteria:                     #BE90D4
+$flat_studio:                             #8E44AD
+$flat_wisteria:                           #9B59B6
+$flat_san_marino:                         #446CB3
+$flat_alice_blue:                         #E4F1FE
+$flat_royal_blue:                         #4183D7
+$flat_picton_blue:                        #59ABE3
+$flat_spray:                              #81CFE0
+$flat_shakespeare:                        #52B3D9
+$flat_humming_bird:                       #C5EFF7
+$flat_picton_blue:                        #22A7F0
+$flat_curious_blue:                       #3498DB
+$flat_madison:                            #2C3E50
+$flat_dodger_blue:                        #19B5FE
+$flat_ming:                               #336E7B
+$flat_ebony_clay:                         #22313F
+$flat_malibu:                             #6BB9F0
+$flat_curious_blue:                       #1E8BC3
+$flat_chambray:                           #3A539B
+$flat_pickled_bluewood:                   #34495E
+$flat_hoki:                               #67809F
+$flat_jelly_bean:                         #2574A9
+$flat_jacksons_purple:                    #1F3A93
+$flat_jordy_blue:                         #89C4F4
+$flat_steel_blue:                         #4B77BE
+$flat_fountain_blue:                      #5C97BF
+$flat_medium_turquoise:                   #4ECDC4
+$flat_aqua_island:                        #A2DED0
+$flat_gossip:                             #87D37C
+$flat_dark_sea_green:                     #90C695
+$flat_eucalyptus:                         #26A65B
+$flat_caribbean_green:                    #03C9A9
+$flat_silver_tree:                        #68C3A3
+$flat_downy:                              #65C6BB
+$flat_mountain_meadow:                    #1BBC9B
+$flat_light_sea_green:                    #1BA39C
+$flat_medium_aquamarine:                  #66CC99
+$flat_turquoise:                          #36D7B7
+$flat_madang:                             #C8F7C5
+$flat_riptide:                            #86E2D5
+$flat_shamrock:                           #2ECC71
+$flat_mountain_meadow:                    #16a085
+$flat_emerald:                            #3FC380
+$flat_green_haze:                         #019875
+$flat_free_speech_aquamarine:             #03A678
+$flat_ocean_green:                        #4DAF7C
+$flat_niagara:                            #2ABB9B
+$flat_jade:                               #00B16A
+$flat_salem:                              #1E824C
+$flat_observatory:                        #049372
+$flat_jungle_green:                       #26C281
+$flat_cream_can:                          #F5D76E
+$flat_ripe_lemon:                         #F7CA18
+$flat_saffron:                            #F4D03F
+$flat_cape_honey:                         #FDE3A7
+$flat_california:                         #F89406
+$flat_fire_bush:                          #EB9532
+$flat_tahiti_gold:                        #E87E04
+$flat_casablanca:                         #F4B350
+$flat_crusta:                             #F2784B
+$flat_jaffa:                              #EB974E
+$flat_lightning_yellow:                   #F5AB35
+$flat_burnt_orange:                       #D35400
+$flat_buttercup:                          #F39C12
+$flat_ecstasy:                            #F9690E
+$flat_sandstorm:                          #F9BF3B
+$flat_jaffa:                              #F27935
+$flat_zest:                               #E67E22
+$flat_white_smoke:                        #ececec
+$flat_lynch:                              #6C7A89
+$flat_pumice:                             #D2D7D3
+$flat_gallery:                            #EEEEEE
+$flat_silver_sand:                        #BDC3C7
+$flat_porcelain:                          #ECF0F1
+$flat_cascade:                            #95A5A6
+$flat_iron:                               #DADFE1
+$flat_edward:                             #ABB7B7
+$flat_cararra:                            #F2F1EF
+$flat_silver:                             #BFBFBF
+
+
+
+// Material Designs Color Palettes
+// - from: http://www.google.com/design/spec/style/color.html#
+//-----------------------------------------------------------------
+
+//-----------------------------------------------------------------
+// Red - Shades
+//-----------------------------------------------------------------
+$red_500:                                 #e51c23
+$red_50:                                  #fde0dc
+$red_100:                                 #f9bdbb
+$red_200:                                 #f69988
+$red_300:                                 #f36c60
+$red_400:                                 #e84e40
+$red_500:                                 #e51c23
+$red_600:                                 #dd191d
+$red_700:                                 #d01716
+$red_800:                                 #c41411
+$red_900:                                 #b0120a
+$red_A100:                                #ff7997
+$red_A200:                                #ff5177
+$red_A400:                                #ff2d6f
+$red_A700:                                #e00032
+
+//-----------------------------------------------------------------
+// Pink - Shades
+//-----------------------------------------------------------------
+$pink_500:                                #e91e63
+$pink_50:                                 #fce4ec
+$pink_100:                                #f8bbd0
+$pink_200:                                #f48fb1
+$pink_300:                                #f06292
+$pink_400:                                #ec407a
+$pink_500:                                #e91e63
+$pink_600:                                #d81b60
+$pink_700:                                #c2185b
+$pink_800:                                #ad1457
+$pink_900:                                #880e4f
+$pink_A100:                               #ff80ab
+$pink_A200:                               #ff4081
+$pink_A400:                               #f50057
+$pink_A700:                               #c51162
+
+//-----------------------------------------------------------------
+// Purple - Shades
+//-----------------------------------------------------------------
+$purple_500:                              #9c27b0
+$purple_50:                               #f3e5f5
+$purple_100:                              #e1bee7
+$purple_200:                              #ce93d8
+$purple_300:                              #ba68c8
+$purple_400:                              #ab47bc
+$purple_500:                              #9c27b0
+$purple_600:                              #8e24aa
+$purple_700:                              #7b1fa2
+$purple_800:                              #6a1b9a
+$purple_900:                              #4a148c
+$purple_A100:                             #ea80fc
+$purple_A200:                             #e040fb
+$purple_A400:                             #d500f9
+$purple_A700:                             #aa00ff
+
+//-----------------------------------------------------------------
+// Deep Purple - Shades
+//-----------------------------------------------------------------
+$deep_purple_500:                         #673ab7
+$deep_purple_50:                          #ede7f6
+$deep_purple_100:                         #d1c4e9
+$deep_purple_200:                         #b39ddb
+$deep_purple_300:                         #9575cd
+$deep_purple_400:                         #7e57c2
+$deep_purple_500:                         #673ab7
+$deep_purple_600:                         #5e35b1
+$deep_purple_700:                         #512da8
+$deep_purple_800:                         #4527a0
+$deep_purple_900:                         #311b92
+$deep_purple_A100:                        #b388ff
+$deep_purple_A200:                        #7c4dff
+$deep_purple_A400:                        #651fff
+$deep_purple_A700:                        #6200ea
+
+//-----------------------------------------------------------------
+// Indigo - Shades
+//-----------------------------------------------------------------
+$indigo_500:                              #3f51b5
+$indigo_50:                               #e8eaf6
+$indigo_100:                              #c5cae9
+$indigo_200:                              #9fa8da
+$indigo_300:                              #7986cb
+$indigo_400:                              #5c6bc0
+$indigo_500:                              #3f51b5
+$indigo_600:                              #3949ab
+$indigo_700:                              #303f9f
+$indigo_800:                              #283593
+$indigo_900:                              #1a237e
+$indigo_A100:                             #8c9eff
+$indigo_A200:                             #536dfe
+$indigo_A400:                             #3d5afe
+$indigo_A700:                             #304ffe
+
+//-----------------------------------------------------------------
+// Blue - Shades
+//-----------------------------------------------------------------
+$blue_500:                                #5677fc
+$blue_50:                                 #e7e9fd
+$blue_100:                                #d0d9ff
+$blue_200:                                #afbfff
+$blue_300:                                #91a7ff
+$blue_400:                                #738ffe
+$blue_500:                                #5677fc
+$blue_600:                                #4e6cef
+$blue_700:                                #455ede
+$blue_800:                                #3b50ce
+$blue_900:                                #2a36b1
+$blue_A100:                               #a6baff
+$blue_A200:                               #6889ff
+$blue_A400:                               #4d73ff
+$blue_A700:                               #4d69ff
+
+//-----------------------------------------------------------------
+// Light Blue - Shades
+//-----------------------------------------------------------------
+$light_blue_500:                          #03a9f4
+$light_blue_50:                           #e1f5fe
+$light_blue_100:                          #b3e5fc
+$light_blue_200:                          #81d4fa
+$light_blue_300:                          #4fc3f7
+$light_blue_400:                          #29b6f6
+$light_blue_500:                          #03a9f4
+$light_blue_600:                          #039be5
+$light_blue_700:                          #0288d1
+$light_blue_800:                          #0277bd
+$light_blue_900:                          #01579b
+$light_blue_A100:                         #80d8ff
+$light_blue_A200:                         #40c4ff
+$light_blue_A400:                         #00b0ff
+$light_blue_A700:                         #0091ea
+
+//-----------------------------------------------------------------
+// Cyan - Shades
+//-----------------------------------------------------------------
+$cyan_500:                                #00bcd4
+$cyan_50:                                 #e0f7fa
+$cyan_100:                                #b2ebf2
+$cyan_200:                                #80deea
+$cyan_300:                                #4dd0e1
+$cyan_400:                                #26c6da
+$cyan_500:                                #00bcd4
+$cyan_600:                                #00acc1
+$cyan_700:                                #0097a7
+$cyan_800:                                #00838f
+$cyan_900:                                #006064
+$cyan_A100:                               #84ffff
+$cyan_A200:                               #18ffff
+$cyan_A400:                               #00e5ff
+$cyan_A700:                               #00b8d4
+
+//-----------------------------------------------------------------
+// Teal - Shades
+//-----------------------------------------------------------------
+$teal_500:                                #009688
+$teal_50:                                 #e0f2f1
+$teal_100:                                #b2dfdb
+$teal_200:                                #80cbc4
+$teal_300:                                #4db6ac
+$teal_400:                                #26a69a
+$teal_500:                                #009688
+$teal_600:                                #00897b
+$teal_700:                                #00796b
+$teal_800:                                #00695c
+$teal_900:                                #004d40
+$teal_A100:                               #a7ffeb
+$teal_A200:                               #64ffda
+$teal_A400:                               #1de9b6
+$teal_A700:                               #00bfa5
+
+//-----------------------------------------------------------------
+// Green - Shades
+//-----------------------------------------------------------------
+$green_500:                               #259b24
+$green_50:                                #d0f8ce
+$green_100:                               #a3e9a4
+$green_200:                               #72d572
+$green_300:                               #42bd41
+$green_400:                               #2baf2b
+$green_500:                               #259b24
+$green_600:                               #0a8f08
+$green_700:                               #0a7e07
+$green_800:                               #056f00
+$green_900:                               #0d5302
+$green_A100:                              #a2f78d
+$green_A200:                              #5af158
+$green_A400:                              #14e715
+$green_A700:                              #12c700
+
+//-----------------------------------------------------------------
+// Light Green - Shades
+//-----------------------------------------------------------------
+$light_green_500:                         #8bc34a
+$light_green_50:                          #f1f8e9
+$light_green_100:                         #dcedc8
+$light_green_200:                         #c5e1a5
+$light_green_300:                         #aed581
+$light_green_400:                         #9ccc65
+$light_green_500:                         #8bc34a
+$light_green_600:                         #7cb342
+$light_green_700:                         #689f38
+$light_green_800:                         #558b2f
+$light_green_900:                         #33691e
+$light_green_A100:                        #ccff90
+$light_green_A200:                        #b2ff59
+$light_green_A400:                        #76ff03
+$light_green_A700:                        #64dd17
+
+//-----------------------------------------------------------------
+// Lime - Shades
+//-----------------------------------------------------------------
+$lime_500:                                #cddc39
+$lime_50:                                 #f9fbe7
+$lime_100:                                #f0f4c3
+$lime_200:                                #e6ee9c
+$lime_300:                                #dce775
+$lime_400:                                #d4e157
+$lime_500:                                #cddc39
+$lime_600:                                #c0ca33
+$lime_700:                                #afb42b
+$lime_800:                                #9e9d24
+$lime_900:                                #827717
+$lime_A100:                               #f4ff81
+$lime_A200:                               #eeff41
+$lime_A400:                               #c6ff00
+$lime_A700:                               #aeea00
+
+//-----------------------------------------------------------------
+// Yellow - Shades
+//-----------------------------------------------------------------
+$yellow_500:                              #ffeb3b
+$yellow_50:                               #fffde7
+$yellow_100:                              #fff9c4
+$yellow_200:                              #fff59d
+$yellow_300:                              #fff176
+$yellow_400:                              #ffee58
+$yellow_500:                              #ffeb3b
+$yellow_600:                              #fdd835
+$yellow_700:                              #fbc02d
+$yellow_800:                              #f9a825
+$yellow_900:                              #f57f17
+$yellow_A100:                             #ffff8d
+$yellow_A200:                             #ffff00
+$yellow_A400:                             #ffea00
+$yellow_A700:                             #ffd600
+
+//-----------------------------------------------------------------
+// Amber - Shades
+//-----------------------------------------------------------------
+$amber_500:                               #ffc107
+$amber_50:                                #fff8e1
+$amber_100:                               #ffecb3
+$amber_200:                               #ffe082
+$amber_300:                               #ffd54f
+$amber_400:                               #ffca28
+$amber_500:                               #ffc107
+$amber_600:                               #ffb300
+$amber_700:                               #ffa000
+$amber_800:                               #ff8f00
+$amber_900:                               #ff6f00
+$amber_A100:                              #ffe57f
+$amber_A200:                              #ffd740
+$amber_A400:                              #ffc400
+$amber_A700:                              #ffab00
+
+//-----------------------------------------------------------------
+// Orange - Shades
+//-----------------------------------------------------------------
+$orange_500:                              #ff9800
+$orange_50:                               #fff3e0
+$orange_100:                              #ffe0b2
+$orange_200:                              #ffcc80
+$orange_300:                              #ffb74d
+$orange_400:                              #ffa726
+$orange_500:                              #ff9800
+$orange_600:                              #fb8c00
+$orange_700:                              #f57c00
+$orange_800:                              #ef6c00
+$orange_900:                              #e65100
+$orange_A100:                             #ffd180
+$orange_A200:                             #ffab40
+$orange_A400:                             #ff9100
+$orange_A700:                             #ff6d00
+
+//-----------------------------------------------------------------
+// Deep Orange - Shades
+//-----------------------------------------------------------------
+$deep_orange_500:                         #ff5722
+$deep_orange_50:                          #fbe9e7
+$deep_orange_100:                         #ffccbc
+$deep_orange_200:                         #ffab91
+$deep_orange_300:                         #ff8a65
+$deep_orange_400:                         #ff7043
+$deep_orange_500:                         #ff5722
+$deep_orange_600:                         #f4511e
+$deep_orange_700:                         #e64a19
+$deep_orange_800:                         #d84315
+$deep_orange_900:                         #bf360c
+$deep_orange_A100:                        #ff9e80
+$deep_orange_A200:                        #ff6e40
+$deep_orange_A400:                        #ff3d00
+$deep_orange_A700:                        #dd2c00
+
+//-----------------------------------------------------------------
+// Brown - Shades
+//-----------------------------------------------------------------
+$brown_500:                               #795548
+$brown_50:                                #efebe9
+$brown_100:                               #d7ccc8
+$brown_200:                               #bcaaa4
+$brown_300:                               #a1887f
+$brown_400:                               #8d6e63
+$brown_500:                               #795548
+$brown_600:                               #6d4c41
+$brown_700:                               #5d4037
+$brown_800:                               #4e342e
+$brown_900:                               #3e2723
+
+//-----------------------------------------------------------------
+// Grey - Shades
+//-----------------------------------------------------------------
+$grey_500:                                #9e9e9e
+$grey_50:                                 #fafafa
+$grey_100:                                #f5f5f5
+$grey_200:                                #eeeeee
+$grey_300:                                #e0e0e0
+$grey_400:                                #bdbdbd
+$grey_500:                                #9e9e9e
+$grey_600:                                #757575
+$grey_700:                                #616161
+$grey_800:                                #424242
+$grey_900:                                #212121
+$grey_1000:                               #000000
+$grey_1000:                               #ffffff
+
+//-----------------------------------------------------------------
+// Blue Grey - Shades
+//-----------------------------------------------------------------
+$blue_grey_500:                           #607d8b
+$blue_grey_50:                            #eceff1
+$blue_grey_100:                           #cfd8dc
+$blue_grey_200:                           #b0bec5
+$blue_grey_300:                           #90a4ae
+$blue_grey_400:                           #78909c
+$blue_grey_500:                           #607d8b
+$blue_grey_600:                           #546e7a
+$blue_grey_700:                           #455a64
+$blue_grey_800:                           #37474f
+$blue_grey_900:                           #263238
+
 
 /*
 -------------------------------------------------------------------*/
+
 
 
 /*

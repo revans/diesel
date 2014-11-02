@@ -38,6 +38,7 @@ module Featurette
 
         def add_reg_routes
           reg_routes = <<-ROUTE
+
   # regisration
   get     "/register",    to: "registrations#new",      as: :registration
   post    "/register",    to: "registrations#create",   as: :create_registration

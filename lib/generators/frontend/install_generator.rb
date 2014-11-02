@@ -137,6 +137,16 @@ module Featurette
           copy_file "partials/form_errors.html.erb",  'app/views/application/_form_errors.html.erb'
         end
 
+        def add_font_location_to_assets_path
+          log :add_font_location_to_assets_path, ''
+          application "config.assets.paths << ::Rails.root.join('app/assets/fonts')"
+        end
+
+        def copy_app_config
+          log :copy_app_config, ''
+          copy_file "config/app.yml", "config/app.yml"
+        end
+
 
         def execute_bundle_install
           log :execute_bundle_install, ""

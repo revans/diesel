@@ -2,27 +2,29 @@ default: &default
   app_name: 'AppName'
   company_name: 'CompanyName'
   developer_name: 'Code Wranglers, Inc'
+  version: 1
+  format: 'json'
 
 
 development:
   <<: *default
-  app_url: 'localhost:3000'
+  url: 'localhost:3000'
   header_name: 'companyname.appname-development'
-  api_token: 'token'
+  token: 'token'
 
 
 test:
   <<: *default
-  app_url: 'localhost:3000'
+  url: 'localhost:3000'
   header_name: 'companyname.app_name-test'
-  api_token: 'token'
+  token: 'token'
 
 
 staging:
   <<: *default
-  app_url: 'staging.url.com'
+  url: 'staging.url.com'
   header_name: 'companyname.app_name-staging'
-  api_token: 'token'
+  token: 'token'
 
 
 production:

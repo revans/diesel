@@ -1,34 +1,23 @@
 <%= render "doctype" %>
   </head>
-  <body ng-app=''>
+  <body class='' ng-app=''>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <header class='header'>
+    <header class='header-nav'>
       <%= render 'nav' %>
     </header>
 
     <main class='main-section' role='main'>
-      <div class='container'>
-        <section class='flash-messages'>
-          <%= render "flashes" %>
-        </section>
-
-        <section class='row'>
-          <%= yield %>
-        </section>
-      </div>
+      <%= render "flashes" %>
+      <%= yield %>
     </main>
 
-    <div class='container'>
-      <hr />
-    </div>
-
-    <footer class='footer'>
-      <div class='container'>
+    <footer class='footer row'>
+      <p class='col-xs-12'>
         <small>&copy; <%= year %> <%= app_name %> @ <%= company_name %></small>
-      </div>
+      </p>
     </footer>
 
     <%= render "footer" %>

@@ -16,41 +16,55 @@ module Featurette
           super(args, options, config)
         end
 
-        def add_server_gems
-          gem "foreman"
-          gem 'unicorn'     if options[:app_server] == 'unicorn'
-          gem 'puma'        if options[:app_server] == 'puma'
-          gem 'thin'        if options[:app_server] == 'thin'
+        def support_for_app_server
+          log :support_for_app_server, ""
+
+          case options[:app_server]
+          when 'puma'
+            gem "puma"
+            template "config/puma.conf.erb",  'config/puma.conf'
+            copy_file "procfile.puma",        'Procfile'
+
+          when 'thin'
+            gem "thin"
+            template "config/thin.conf.erb",  'config/thin.conf'
+            copy_file "procfile.thin",        'Procfile'
+
+          else
+            gem "unicorn"
+            template "config/unicorn.rb.erb", 'config/unicorn.rb'
+            copy_file "procfile.ubuntu",      'Procfile'
+
+          end
         end
 
-        def copy_application_server_config
-          template "config/unicorn.rb.erb", 'config/unicorn.rb'   if options[:app_server] == 'unicorn'
-          template "config/puma.conf.erb",  'config/puma.conf'    if options[:app_server] == 'puma'
-          template "config/thin.conf.erb",  'config/thin.conf'    if options[:app_server] == 'thin'
-        end
 
         def copy_nginx_config
+          log :copy_nginx_config, ""
+
           template  "config/nginx.conf.erb",
                     "config/nginx.conf",
                     force: true
         end
 
-        def copy_procfile
-          copy_file "procfile.ubuntu",      'Procfile'      if options[:app_server] == 'unicorn'
-          copy_file "procfile.puma",        'Procfile'      if options[:app_server] == 'puma'
-          copy_file "procfile.thin",        'Procfile'      if options[:app_server] == 'thin'
-          copy_file "procfile.dev",         'Procfile.dev'
+        def setup_foreman
+          log :setup_foreman, ""
+          gem "foreman"
+          copy_file "procfile.dev",  'Procfile.dev'
         end
 
         def create_pids_folder
+          log :create_pids_folder, ""
           empty_directory "tmp/pids"
         end
 
         def create_sockets_folder
+          log :create_sockets_folder, ""
           empty_directory "tmp/sockets"
         end
 
         def add_logger_sync_for_foreman
+          log :add_logger_sync_for_foreman, ""
           prepend_file "config/environments/development.rb", "STDOUT.sync = true\n\n"
         end
 

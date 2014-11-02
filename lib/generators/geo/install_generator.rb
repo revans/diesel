@@ -17,11 +17,13 @@ module Featurette
         end
 
         def add_geocoding_methods
+          log :add_geocoding_methods, ""
           copy_file "models/geocode_model_concern.rb",
                     'app/models/concerns/geocode_address.rb'
         end
 
         def add_geocoding_gems
+          log :add_geocoding_gems, ""
           gem 'geocoder'
         end
 

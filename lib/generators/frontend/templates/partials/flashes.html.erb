@@ -1,6 +1,9 @@
-<% flash.each do |type, message| %>
-  <div class="alert alert-<%= type %> alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong><%= type.to_s.titleize %>!</strong> <%= message %>
-  </div>
-<% end %>
+
+<div class='row'>
+  <% flash.each do |type, message| %>
+    <div class="alert alert-<%= type %> alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong><%= type.to_s.titleize %>!</strong> <%= message %>
+    </div>
+  <% end %>
+</div>

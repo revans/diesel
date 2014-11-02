@@ -2,26 +2,28 @@
 <div class='page-header'>
   <h3>Edit your Profile</h3>
 </div>
+<div class='row'>
 
+  <%= form_for @user do |f| %>
+    <div class='form-group'>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'First & Last Name' %>
+    </div>
 
-<%= form_for @user do |f| %>
-  <div class='form-group'>
-    <%= f.text_field :name, class: 'form-control', placeholder: 'First & Last Name' %>
-  </div>
+    <div class='form-group'>
+      <%= f.email_field :email, class: 'form-control', placehmlder: 'Email Address' %>
+    </div>
 
-  <div class='form-group'>
-    <%= f.email_field :email, class: 'form-control', placehmlder: 'Email Address' %>
-  </div>
+    <div class='form-group'>
+      <%= f.password_field :password, class: 'form-control', placeholder: 'Change your Password' %>
+    </div>
 
-  <div class='form-group'>
-    <%= f.password_field :password, class: 'form-control', placeholder: 'Change your Password' %>
-  </div>
+    <div class='form-group'>
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Confirmation' %>
+    </div>
 
-  <div class='form-group'>
-    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Confirmation' %>
-  </div>
+    <div class='form-group'>
+      <%= f.submit 'Update Profile', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
 
-  <div class='form-group'>
-    <%= f.submit 'Update Profile', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>

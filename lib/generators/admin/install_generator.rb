@@ -18,6 +18,7 @@ module Featurette
 
 
         def copy_admin_controller
+          log :copy_admin_controller, ""
           mkdir_p   "app/controllers/admin"
 
           copy_file "controllers/admin_controller.rb",
@@ -25,6 +26,7 @@ module Featurette
         end
 
         def add_admin_namespaced_route
+          log :add_admin_namespaced_route, ""
           admin_namespace = <<-NAMESPACE
 
   namespace :admin do

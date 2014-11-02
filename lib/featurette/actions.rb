@@ -80,21 +80,21 @@ module Featurette
 
 
     def replace_in_file(relative_path, find, replace)
-      path      = File.join(destination_root, relative_path)
-      contents  = IO.read(path)
+      path      = ::File.join(destination_root, relative_path)
+      contents  = ::IO.read(path)
 
       unless contents.gsub!(find, replace)
         raise "#{find.inspect} not found in #{relative_path}"
       end
 
-      File.open(path, "w") { |file| file.write(contents) }
+      ::File.open(path, "w") { |file| file.write(contents) }
     end
 
 
 
     def application_name
-      if defined?(Rails) && Rails.application
-        Rails.application.class.name.split('::').first.underscore
+      if defined?(Rails) && ::Rails.application
+        ::Rails.application.class.name.split('::').first.underscore
       else
         "application"
       end
