@@ -77,7 +77,7 @@ module Featurette
                            after: "protect_from_forgery with: :exception") do
             <<-'RUBY'
 
-  after_action :set_csrf_cookie_for_angular
+  after_action :set_csrf_cookie_for_angular, if: :json_requested?
 
   private
 
@@ -87,6 +87,10 @@ module Featurette
 
   def verified_request?
     super || form_authenticity_token == request.headers['HTTP_X_XSRF_TOKEN']
+  end
+
+  def json_requested?
+    request.format.json?
   end
 
             RUBY
