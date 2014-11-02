@@ -41,6 +41,8 @@ module Featurette
           gem "bootstrap-sass"
           gem "font-awesome-sass"
           gem "autoprefixer-rails"
+          gem "local_time"
+          gem "kaminari"
         end
 
         def copy_stylesheet_helpers
@@ -140,6 +142,11 @@ module Featurette
         def add_font_location_to_assets_path
           log :add_font_location_to_assets_path, ''
           application "config.assets.paths << ::Rails.root.join('app/assets/fonts')"
+        end
+
+        def add_database_utc_setting
+          log :add_database_utc_setting, ''
+          application "config.active_record.default_timezone = :utc"
         end
 
         def copy_app_config
