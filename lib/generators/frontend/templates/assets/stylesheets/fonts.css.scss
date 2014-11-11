@@ -38,13 +38,13 @@
 
 /* Font-Awesome
 -------------------------------------------------------------------*/
-// @include font-face(FontAwesome,  'font-awesome/fontawesome-webfont', normal, normal, $asset-pipeline: true);
+@include font-face(FontAwesome,  'font-awesome/fontawesome-webfont', normal, normal, $asset-pipeline: true);
 
 
 
 /* Glyphicons
 -------------------------------------------------------------------*/
-// @include font-face(Glyphicons,  'glyphicons/flat-ui-pro-icons-regular', normal, normal, $asset-pipeline: true);
+@include font-face(Glyphicons,  'glyphicons/flat-ui-pro-icons-regular', normal, normal, $asset-pipeline: true);
 
 
 

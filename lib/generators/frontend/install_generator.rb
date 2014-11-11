@@ -36,15 +36,6 @@ module Featurette
           application generators_config
         end
 
-        def add_bootstrap_gems
-          log :add_bootstrap_gems, ''
-          gem "bootstrap-sass"
-          gem "font-awesome-sass"
-          gem "autoprefixer-rails"
-          gem "local_time"
-          gem "kaminari"
-        end
-
         def copy_stylesheet_helpers
           log :copy_stylesheet_helpers, ''
           mkdir_p "app/assets/stylesheets/helpers"
@@ -52,6 +43,7 @@ module Featurette
           %w|
               buttons
               colors
+              color_wheel
               flashes
               fonts
               utilities
@@ -82,7 +74,7 @@ module Featurette
 
         def add_bootstrap_javascript_files
           log :add_bootstrap_javascript_files, ''
-          add_to_javascript_manifest 'bootstrap-sprockets', after: '//= require jquery_ujs'
+          add_to_javascript_manifest 'bootstrap-sprockets', after: "//= require jquery_ujs\n"
         end
 
         def recreate_application_stylesheet
@@ -154,6 +146,20 @@ module Featurette
           copy_file "config/app.yml", "config/app.yml"
         end
 
+        def copy_fonts
+          log :copy_fonts, ''
+          directory "assets/fonts/font-awesome",  "app/assets/fonts/font-awesome"
+          directory "assets/fonts/glyphicons",    "app/assets/fonts/glyphicons"
+        end
+
+        def add_bootstrap_gems
+          log :add_bootstrap_gems, ''
+          gem "bootstrap-sass"
+          gem "font-awesome-sass"
+          gem "autoprefixer-rails"
+          gem "local_time"
+          gem "kaminari"
+        end
 
         def execute_bundle_install
           log :execute_bundle_install, ""

@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         format.json { render :show, status: :created, location: @user }
       else
         clean_user_session
-        format.html { render :new, notice: 'Could not log you in. Try again.' }
+        format.html { redirect_to login_url, notice: 'Could not log you in. Try again.' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

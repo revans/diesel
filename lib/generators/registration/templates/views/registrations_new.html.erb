@@ -1,31 +1,93 @@
 
 <div class='row'>
+  <div class="col-xs-12 callout callout-warning">
+    <h4>Already have an Account?</h4>
+    <p>
+      Head on over to the
+      <strong><%= link_to 'login page', login_url, class: 'callout-highlight' %></strong>
+      to log into <strong><%= app_name %></strong>.
+    </p>
+  </div>
+</div>
 
-  <%= form_for @user, url: create_registration_url do |f| %>
+<div class='page-header'>
+  <h3>Register a new Account</h3>
+</div>
 
-    <div class='form-group'>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'First & Last Name' %>
-    </div>
 
-    <div class='form-group'>
-      <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
-    </div>
+<div class='row'>
+  <div class='col-xs-12'>
 
-    <div class='form-group'>
-      <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
-    </div>
+    <%= form_for @user, url: create_registration_url do |f| %>
+      <div class="form-group">
+        <label for='user_email'>
+          <%= t('login.form.label.name') %>
+        </label>
 
-    <div class='form-group'>
-      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Confirmation' %>
-    </div>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <%= f.text_field :name, class: 'form-control', placeholder: 'First & Last Name', class: 'form-control input-lg', autofocus: 'autofocus' %>
+        </div>
+      </div>
 
-    <div class='form-group'>
-      <%= f.check_box :accept_terms, {class: 'form-control'}, true, false %> Yes, I accept the terms
-    </div>
+      <div class="form-group">
+        <label for='user_email'>
+          <%= t('login.form.label.email') %>
+        </label>
 
-    <div class='form-group'>
-      <%= f.submit 'Create Account', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <%= f.text_field :email, placeholder: 'Email Address', class: 'form-control input-lg', autofocus: 'autofocus' %>
+        </div>
+      </div>
 
+
+      <div class="form-group">
+        <label for='user_password'>
+          <%= t('login.form.label.password') %>
+        </label>
+
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-key"></i>
+          </span>
+          <%= f.password_field :password, placholder: 'Password', class: 'form-control input-lg' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for='user_password'>
+          <%= t('login.form.label.password_confirmation') %>
+        </label>
+
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-key"></i>
+          </span>
+          <%= f.password_field :password_confirmation, placholder: 'Confirm Password', class: 'form-control input-lg' %>
+        </div>
+      </div>
+
+
+
+      <div class="form-group">
+        <label>
+          <%= f.check_box :accept_terms, {class: 'form-control'}, true, false %>
+          <%= t('login.form.label.accept_terms') %>
+        </label>
+      </div>
+
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.submit 'Create Account', class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
 </div>

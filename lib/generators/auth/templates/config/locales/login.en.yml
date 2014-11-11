@@ -1,0 +1,16 @@
+en:
+  logins:
+    create:
+      success: "You are now logged in"
+      error: "Failed to login"
+    destroy:
+      success: "You are logged out"
+      error: "Logout has failed"
+  login:
+    form:
+      label:
+        name: 'First & Last Name'
+        email:      'Email Address'
+        password:   'Password'
+        password_confirmation: 'Confirm Password'
+        accept_terms: 'Yes, I accept the terms'

@@ -47,9 +47,8 @@ module Featurette
                     force: true
         end
 
-        def setup_foreman
-          log :setup_foreman, ""
-          gem "foreman"
+        def copy_profile
+          log :copy_profile, ""
           copy_file "procfile.dev",  'Procfile.dev'
         end
 
@@ -66,6 +65,11 @@ module Featurette
         def add_logger_sync_for_foreman
           log :add_logger_sync_for_foreman, ""
           prepend_file "config/environments/development.rb", "STDOUT.sync = true\n\n"
+        end
+
+        def setup_foreman
+          log :setup_foreman, ""
+          gem "foreman"
         end
 
         def execute_bundle_install

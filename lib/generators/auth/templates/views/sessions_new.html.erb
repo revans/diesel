@@ -1,35 +1,55 @@
 <div class='row'>
-  <div class='alert alert-info fade in'>
-    <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>x</button>
-    You can
-    <strong>
-      register an account
-      <%# link_to 'register an account', registration_url, class: '' %>
-    </strong>
-    if you do not already have one.
+  <div class="col-xs-12 callout callout-warning">
+    <h4>Need an Account?</h4>
+    <p>
+      To get started using <strong><%= app_name %></strong>,
+      head on over and <strong><%= link_to 'Register an account', registration_url, class: 'callout-highlight' %></strong>.
+    </p>
   </div>
 </div>
 
-
 <div class='page-header'>
-  <h3>Login into your Account</h3>
+  <h3>Log into your Account</h3>
 </div>
 
+<div class='row'>
+  <div class='col-xs-12'>
 
-<div class='row'
+    <%= form_for @user, url: perform_login_url(@user) do |f| %>
+      <div class="form-group">
+        <label for='user_email'>
+          <%= t('login.form.label.email') %>
+        </label>
 
-  <%= form_for @user, url: perform_login_url(@user) do |f| %>
-    <div class='form-group'>
-      <%= f.email_field :email, class: 'form-control', placeholder: 'Email Address' %>
-    </div>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-envelope"></i>
+          </span>
+          <%= f.text_field :email, placeholder: 'Email Address', class: 'form-control input-lg', autofocus: 'autofocus' %>
+        </div>
+      </div>
 
-    <div class='form-group'>
-      <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
-    </div>
 
-    <div class='form-group'>
-      <%= f.submit 'Login', class: 'btn btn-primary' %>
-    </div>
-  <% end %>
+      <div class="form-group">
+        <label for='user_password'>
+          <%= t('login.form.label.password') %>
+        </label>
 
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-key"></i>
+          </span>
+          <%= f.password_field :password, placholder: 'Password', class: 'form-control input-lg' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <%= f.submit 'Login', class: 'btn btn-default' %>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
 </div>

@@ -16,10 +16,6 @@ module Featurette
           super(args, options, config)
         end
 
-        def add_bcrypt_gem
-          gem 'bcrypt'
-        end
-
         def create_auth_folders
           in_root do
             mkdir_p "app/views/sessions"
@@ -86,9 +82,16 @@ module Featurette
 
         def include_session_auth_concern
           content = "  include SessionAuthentication"
-          insert_into_file("app/controllers/application_controller.rb", content, after: "class ApplicationController < ActionController::Base")
+          insert_into_file("app/controllers/application_controller.rb", content, after: "class ApplicationController < ActionController::Base\n\n")
         end
 
+        def copy_locale
+          copy_file "config/locales/login.en.yml", "config/locales/login.en.yml"
+        end
+
+        def add_bcrypt_gem
+          gem 'bcrypt'
+        end
 
         def execute_bundle_install
           log :execute_bundle_install, ""

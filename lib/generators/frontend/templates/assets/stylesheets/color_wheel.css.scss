@@ -1,0 +1,405 @@
+
+
+// Change this color
+$base: #ff33cc;
+
+
+// Hue Ranges
+$hue: (
+  red:          0deg,
+  orange:       20deg,
+  yellow:       40deg,
+  greenyellow:  60deg,
+  green:        80deg,
+  teal:         150deg,
+  blue:         180deg,
+  purple:       260deg,
+  pink:         290deg
+);
+
+// Lightness Ranges
+$lightness: (
+  VeryDark:     20%,
+  Dark:         40%,
+  null:         41%,
+  Light:        60%,
+  VeryLight:    80%
+);
+
+// Saturation Ranges
+$saturation: (
+  Dull:         80%,
+  null:         81%,
+  // Bright:       100%
+);
+
+
+
+
+// ------- Color Identification ------- //
+@mixin colorName($color) {
+  $hue-output: hue($color);
+  $saturation-output: saturation($color);
+  $lightness-output: lightness($color);
+
+  // Find the Hue
+  @each $value, $degrees in $hue {
+    @if $hue-output >= $degrees {$hueColor: #{$value} !global;}
+
+    // Find the Lightness
+    @each $value, $range in $lightness {
+      @if $lightness-output >= $range {$lightenColor: #{$hueColor}#{$value} !global;}
+
+       // Find the Saturation
+      @each $value, $range in $saturation {
+        @if $saturation-output >= $range {$colorName: #{$lightenColor}#{$value} !global;}
+      }
+    }
+  }
+  &:after {
+    content:'#{$color}';
+  }
+}
+
+@function subtle_colors($spincolor) {
+  $color1: lighten(adjust-hue($spincolor, 5), 10%);
+  $color2: lighten(adjust-hue($spincolor, 10), 20%);
+  $color3: $spincolor;
+  $color4: darken(adjust-hue($spincolor, -5), 10%);
+  $color5: darken(adjust-hue($spincolor, -10), 20%);
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+@function monochrome_colors($spincolor) {
+  $color1: lighten($spincolor, 20%) !global;
+  $color2: lighten($spincolor, 10%) !global;
+  $color3: $spincolor !global;
+  $color4: darken($spincolor, 10%) !global;
+  $color5: darken($spincolor, 20%) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+@function analogous_colors($spincolor) {
+  $color1: adjust-hue($spincolor, 30deg) !global;
+  $color2: adjust-hue($spincolor, 15deg) !global;
+  $color3: $spincolor !global;
+  $color4: adjust-hue($spincolor, -15deg) !global;
+  $color5: adjust-hue($spincolor, -30deg) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+@function triad_colors($spincolor) {
+  $color1: $spincolor !global;
+  $color2: darken($color1, 20%) !global;
+  $color3: desaturate(adjust-hue($spincolor, 120deg), 5%) !global;
+  $color4: desaturate(adjust-hue($spincolor, 240deg), 5%) !global;
+  $color5: darken($color4, 20%) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+@function complimentary_colors($spincolor) {
+  $color1: lighten($spincolor, 20%) !global;
+  $color2: lighten($spincolor, 10%) !global;
+  $color3: $spincolor !global;
+  $color4: darken(adjust-hue($spincolor, 180deg), 10%) !global;
+  $color5: darken($color4, 20%) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+@function saturated_colors($colors, $saturate) {
+  $saturated: ();
+
+  @each $color in $colors {
+    $saturated: append($saturated, saturate($color, $saturate));
+  }
+
+  @return $saturated;
+}
+
+@function desaturated_colors($colors, $desaturate) {
+  $desaturated: ();
+
+  @each $color in $colors {
+    $desaturated: append($desaturated, desaturate($color, $desaturate));
+  }
+
+  @return $desaturated;
+}
+
+@function adjust_hue_colors($colors, $adjust-hue) {
+  $hues: ();
+
+  @each $color in $colors {
+    $hues: append($hues, adjust-hue($color, $adjust-hue));
+  }
+
+  @return $hues;
+}
+
+
+@function color_wheel($spincolor, $scheme, $saturate:100%, $desaturate:0%, $adjust-hue:0deg) {
+  // Monochromatic
+  @if $scheme == monochrome {
+    $color1: lighten($spincolor, 20%) !global;
+    $color2: lighten($spincolor, 10%) !global;
+    $color3: $spincolor !global;
+    $color4: darken($spincolor, 10%) !global;
+    $color5: darken($spincolor, 20%) !global;
+  }
+
+  // Analogous
+  @if $scheme == analogous {
+    $color1: adjust-hue($spincolor, 30deg) !global;
+    $color2: adjust-hue($spincolor, 15deg) !global;
+    $color3: $spincolor !global;
+    $color4: adjust-hue($spincolor, -15deg) !global;
+    $color5: adjust-hue($spincolor, -30deg) !global;
+  }
+
+  // Triad
+  @if $scheme == triad {
+    $color1: $spincolor !global;
+    $color2: darken($color1, 20%) !global;
+    $color3: desaturate(adjust-hue($spincolor, 120deg), 5%) !global;
+    $color4: desaturate(adjust-hue($spincolor, 240deg), 5%) !global;
+    $color5: darken($color4, 20%) !global;
+  }
+
+  // Complimentary
+  @if $scheme == complimentary {
+    $color1: lighten($spincolor, 20%) !global;
+    $color2: lighten($spincolor, 10%) !global;
+    $color3: $spincolor !global;
+    $color4: darken(adjust-hue($spincolor, 180deg), 10%) !global;
+    $color5: darken($color4, 20%) !global;
+  }
+
+  // Saturate
+  $saturate1: saturate($color1, $saturate);
+  $saturate2: saturate($color2, $saturate);
+  $saturate3: saturate($color3, $saturate);
+  $saturate4: saturate($color4, $saturate);
+  $saturate5: saturate($color5, $saturate);
+
+  // Desaturate
+  $desaturate1: desaturate($saturate1, $desaturate);
+  $desaturate2: desaturate($saturate2, $desaturate);
+  $desaturate3: desaturate($saturate3, $desaturate);
+  $desaturate4: desaturate($saturate4, $desaturate);
+  $desaturate5: desaturate($saturate5, $desaturate);
+
+  // Hue Adjust
+  $finalColor1: adjust-hue($desaturate1, $adjust-hue);
+  $finalColor2: adjust-hue($desaturate2, $adjust-hue);
+  $finalColor3: adjust-hue($desaturate3, $adjust-hue);
+  $finalColor4: adjust-hue($desaturate4, $adjust-hue);
+  $finalColor5: adjust-hue($desaturate5, $adjust-hue);
+
+  // Tint
+  $tint1: tint($desaturate1, 15%);
+  $tint2: tint($desaturate2, 30%);
+  $tint3: tint($desaturate3, 45%);
+  $tint4: tint($desaturate4, 60%);
+  $tint5: tint($desaturate5, 75%);
+
+  // Shade
+  $shade1: shade($desaturate1, 15%);
+  $shade2: shade($desaturate2, 30%);
+  $shade3: shade($desaturate3, 45%);
+  $shade4: shade($desaturate4, 60%);
+  $shade5: shade($desaturate5, 75%);
+
+  $colors: $finalColor1, $finalColor2, $finalColor3, $finalColor4, $finalColor5;
+
+  @return $colors;
+}
+
+
+
+// Color Scheme Generator
+@mixin wheel($spincolor, $scheme, $saturate:100%, $desaturate:0%, $adjust-hue:0deg) {
+
+  // Monochromatic
+  @if $scheme == monochrome {
+    $color1: lighten($spincolor, 20%) !global;
+    $color2: lighten($spincolor, 10%) !global;
+    $color3: $spincolor !global;
+    $color4: darken($spincolor, 10%) !global;
+    $color5: darken($spincolor, 20%) !global;
+  }
+
+  // Analogous
+  @if $scheme == analogous {
+    $color1: adjust-hue($spincolor, 30deg) !global;
+    $color2: adjust-hue($spincolor, 15deg) !global;
+    $color3: $spincolor !global;
+    $color4: adjust-hue($spincolor, -15deg) !global;
+    $color5: adjust-hue($spincolor, -30deg) !global;
+  }
+
+  // Triad
+  @if $scheme == triad {
+    $color1: $spincolor !global;
+    $color2: darken($color1, 20%) !global;
+    $color3: desaturate(adjust-hue($spincolor, 120deg), 5%) !global;
+    $color4: desaturate(adjust-hue($spincolor, 240deg), 5%) !global;
+    $color5: darken($color4, 20%) !global;
+  }
+
+  // Complimentary
+  @if $scheme == complimentary {
+    $color1: lighten($spincolor, 20%) !global;
+    $color2: lighten($spincolor, 10%) !global;
+    $color3: $spincolor !global;
+    $color4: darken(adjust-hue($spincolor, 180deg), 10%) !global;
+    $color5: darken($color4, 20%) !global;
+  }
+
+  // Saturate
+  $saturate1: saturate($color1, $saturate);
+  $saturate2: saturate($color2, $saturate);
+  $saturate3: saturate($color3, $saturate);
+  $saturate4: saturate($color4, $saturate);
+  $saturate5: saturate($color5, $saturate);
+
+  // Desaturate
+  $desaturate1: desaturate($saturate1, $desaturate);
+  $desaturate2: desaturate($saturate2, $desaturate);
+  $desaturate3: desaturate($saturate3, $desaturate);
+  $desaturate4: desaturate($saturate4, $desaturate);
+  $desaturate5: desaturate($saturate5, $desaturate);
+
+  // Hue Adjust
+  $finalColor1: adjust-hue($desaturate1, $adjust-hue);
+  $finalColor2: adjust-hue($desaturate2, $adjust-hue);
+  $finalColor3: adjust-hue($desaturate3, $adjust-hue);
+  $finalColor4: adjust-hue($desaturate4, $adjust-hue);
+  $finalColor5: adjust-hue($desaturate5, $adjust-hue);
+
+  // Tint
+  $tint1: tint($desaturate1, 15%);
+  $tint2: tint($desaturate2, 30%);
+  $tint3: tint($desaturate3, 45%);
+  $tint4: tint($desaturate4, 60%);
+  $tint5: tint($desaturate5, 75%);
+
+  // Shade
+  $shade1: shade($desaturate1, 15%);
+  $shade2: shade($desaturate2, 30%);
+  $shade3: shade($desaturate3, 45%);
+  $shade4: shade($desaturate4, 60%);
+  $shade5: shade($desaturate5, 75%);
+
+
+  $wheel_colors: $finalColor1, $finalColor2, $finalColor3, $finalColor4, $finalColor5;
+
+
+  &:nth-child(1) {background:$finalColor1; @include colorName($finalColor1);}
+  &:nth-child(2) {background:$finalColor2; @include colorName($finalColor2);}
+  &:nth-child(3) {background:$finalColor3; @include colorName($finalColor3);}
+  &:nth-child(4) {background:$finalColor4; @include colorName($finalColor4);}
+  &:nth-child(5) {background:$finalColor5; @include colorName($finalColor5);}
+
+}
+
+
+
+@mixin color_swatch {
+  line-height:      100px;
+  text-align:       center;
+
+  &:after {
+    opacity:        0.5;
+  }
+}
+
+
+
+.color-wheel li {
+
+  @include wheel (
+    $base,    // Color
+    triad,    // Scheme (monochrome, analgous, triad, complimentary)
+    10%,      // Saturation in %
+    0,        // Desaturation in %
+    3deg      // Hue Adjustment
+  );
+
+  @include color_swatch;
+}
+
+.base-wheel-color {
+  background-color:   $base;
+  @include color_swatch;
+  &:after {
+    content:      '#{$base}';
+  }
+}
+
+
+.color-wheel {
+  .base-color {
+    display:            block;
+    background-color:   $base;
+    @include color_swatch;
+    &:after {
+      content:      '#{$base}';
+    }
+  }
+
+  .wheel-color {
+    @include wheel (
+      $base,    // Color
+      triad,    // Scheme (monochrome, analgous, triad, complimentary)
+      10%,      // Saturation in %
+      0,        // Desaturation in %
+      3deg      // Hue Adjustment
+    );
+    @include color_swatch;
+  }
+}
+
+
+
+
+
+// @function color_wheel($spincolor, $scheme, $saturate:100%, $desaturate:0%, $adjust-hue:0deg)
+$animation_colors: color_wheel($base, triad, 10%, 0, 3deg);
+$animation-name: colors;
+
+// Animation Stops
+$stops: (
+  20%:    nth($animation_colors, 1),
+  40%:    nth($animation_colors, 2),
+  60%:    nth($animation_colors, 3),
+  80%:    nth($animation_colors, 4),
+  100%:   nth($animation_colors, 5)
+);
+
+// Mixin for keyframe animation
+@mixin keyframe-generator($map, $name) {
+  @keyframes #{$name} {
+    @each $key, $value in $map {
+      #{$key} { background: $value; }
+    }
+  }
+}
+
+@include keyframe-generator($stops, $animation-name);
+.color-animation {
+  height: 200px;
+  width: 200px;
+  display: block;
+  backgroud: mix(nth($animation_colors, 1), nth($animation_colors, 5));
+  animation: $animation-name 3s linear infinite;
+}
