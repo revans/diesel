@@ -29,6 +29,7 @@ module Featurette
           inject_into_file 'app/models/user.rb', "  has_secure_password\n  validates_acceptance_of :accept_terms, accept: true\n", after: "class User < ActiveRecord::Base\n"
         end
 
+
         def copy_auth_files
           # Controllers
           copy_file "controllers/sessions_controller.rb",  "app/controllers/sessions_controller.rb"
@@ -41,10 +42,29 @@ module Featurette
           copy_file "controllers/session_authentication.rb",
               'app/controllers/concerns/session_authentication.rb'
 
-          copy_file "test/session_auth_test_helper.rb",
-            'test/support/session_auth_test_helper.rb'
-
           # Tests
+          copy_file "test/session_auth_test_helper.rb",
+                    'test/support/session_auth_test_helper.rb'
+
+          inject_into_file 'test/test_helper.rb',
+              "require_relative 'support/session_auth_test_helper'\n",
+              after: "require 'rails/test_help'\n"
+
+          inject_into_file 'test/test_helper.rb',
+              "class ActionController::TestCase\n  include ::SessionAuthTestHelper\nend",
+              after: "end\n"
+
+          copy_file "test/models/user_test.rb",
+                    "test/models/user_test.rb"
+
+          copy_file "test/controllers/sessions_controller_test.rb",
+                    "test/controllers/sessions_controller_test.rb"
+
+          copy_file "test/controllers/users_controller_test.rb",
+                    "test/controllers/users_controller_test.rb"
+
+          copy_file "test/fixtures/users.yml",
+                    "test/fixtures/users.yml", force: true
         end
 
         def add_auth_routes

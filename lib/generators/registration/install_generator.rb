@@ -34,6 +34,11 @@ module Featurette
           copy_file "views/dashboard_index.html.erb",     "app/views/dashboard/index.html.erb"
 
           # Tests
+          copy_file "test/controllers/dashboard_controller_test.rb",
+                    "test/controllers/dashboard_controller_test.rb"
+
+          copy_file "test/controllers/registrations_controller_test.rb",
+                    "test/controllers/registrations_controller_test.rb"
         end
 
         def add_reg_routes
