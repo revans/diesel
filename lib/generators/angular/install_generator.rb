@@ -68,10 +68,6 @@ module Featurette
           end
         end
 
-        def install_angular_templates_gem
-          gem 'angular-rails-templates'
-        end
-
         def add_angular_csrf_support
           inject_into_file( "app/controllers/application_controller.rb",
                            after: "protect_from_forgery with: :exception") do
@@ -166,6 +162,9 @@ $(document).on "ready page:load", ->
           end
         end
 
+        def install_angular_templates_gem
+          gem 'angular-rails-templates'
+        end
 
         def run_bundle_for_new_gems
           in_root do
