@@ -28,7 +28,7 @@ class SessionsControllerTest < ActionController::TestCase
       password: 12345,
     }
 
-    assert_template :new
+    assert_redirected_to login_url
   end
 
   def test_logout

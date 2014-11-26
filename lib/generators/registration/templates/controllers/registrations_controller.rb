@@ -4,6 +4,7 @@ class RegistrationsController < ApplicationController
 
   def new
     @user = User.new
+    respond_to :html, :json
   end
 
   def create

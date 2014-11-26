@@ -2,12 +2,13 @@ class UsersController < ApplicationController
   before_action :find_user
 
   def edit
+    respond_to :html, :json
   end
 
   def update
     respond_to do |format|
       if @user.update(profile_params)
-        format.html { redirect_to @user, notice: 'The profile was successfully updated.' }
+        format.html { redirect_to edit_user_url(@user), notice: 'The profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
