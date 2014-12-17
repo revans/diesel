@@ -65,7 +65,7 @@ module Featurette
 @import "helpers/base";
 
           EOF
-          inject_into_file "app/assets/application.css.scss", content,
+          inject_into_file "app/assets/stylesheets/application.css.scss", content,
                 after:    " */",
                 verbose:  false
         end
