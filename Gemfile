@@ -4,7 +4,7 @@ source "https://rubygems.org"
 # gemspec
 
 gem 'rake'
-gem 'rails', '~> 4.2.0.beta2'
+gem 'rails', '~> 4.2.0.beta4'
 
 group :doc do
   gem 'sdoc'
