@@ -13,6 +13,8 @@ require 'generators/mail_sandbox/install_generator'
 require 'generators/rails_gem/install_generator'
 require 'generators/registration/install_generator'
 require 'generators/flatui/install_generator'
+require 'generators/bootstrap/install_generator'
+require 'generators/bower/install_generator'
 
 module Featurette
   module Generators
