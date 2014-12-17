@@ -1,0 +1,509 @@
+
+// Hue Ranges
+$hue: (
+  red:          0deg,
+  orange:       20deg,
+  yellow:       40deg,
+  greenyellow:  60deg,
+  green:        80deg,
+  teal:         150deg,
+  blue:         180deg,
+  purple:       260deg,
+  pink:         290deg
+);
+
+// Lightness Ranges
+$lightness: (
+  VeryDark:     20%,
+  Dark:         40%,
+  null:         41%,
+  Light:        60%,
+  VeryLight:    80%
+);
+
+// Saturation Ranges
+$saturation: (
+  Dull:         80%,
+  null:         81%,
+  // Bright:       100%
+);
+
+
+
+
+// Add percentage of white to a color
+@function tint($color, $percent){
+  @return mix(white, $color, $percent);
+}
+
+// Add percentage of black to a color
+@function shade($color, $percent){
+  @return mix(black, $color, $percent);
+}
+
+
+// -----------------------------------------------------------------------------------
+// Tinted Colors Creator Function
+@function tinted_colors($spincolor) {
+  // Tint
+  $color1: tint($spincolor, 15%);
+  $color2: tint($spincolor, 30%);
+  $color3: tint($spincolor, 45%);
+  $color4: tint($spincolor, 60%);
+  $color5: tint($spincolor, 75%);
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Shaded Colors Creator Function
+@function shaded_colors($spincolor) {
+  // Shade
+  $color1: shade($spincolor, 15%);
+  $color2: shade($spincolor, 30%);
+  $color3: shade($spincolor, 45%);
+  $color4: shade($spincolor, 60%);
+  $color5: shade($spincolor, 75%);
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Subtle Colors Creator Function
+@function subtle_colors($spincolor) {
+  $color1: lighten(adjust-hue($spincolor, 10), 20%);
+  $color2: lighten(adjust-hue($spincolor, 5), 10%);
+  $color3: $spincolor;
+  $color4: darken(adjust-hue($spincolor, -5), 10%);
+  $color5: darken(adjust-hue($spincolor, -10), 20%);
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Monochrome Colors Creator Function
+@function monochrome_colors($spincolor) {
+  $color1: lighten($spincolor, 20%) !global;
+  $color2: lighten($spincolor, 10%) !global;
+  $color3: $spincolor !global;
+  $color4: darken($spincolor, 10%) !global;
+  $color5: darken($spincolor, 20%) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Analogous Colors Creator Function
+@function analogous_colors($spincolor) {
+  $color1: adjust-hue($spincolor, 30deg) !global;
+  $color2: adjust-hue($spincolor, 15deg) !global;
+  $color3: $spincolor !global;
+  $color4: adjust-hue($spincolor, -15deg) !global;
+  $color5: adjust-hue($spincolor, -30deg) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Triad Colors Creator Function
+@function triad_colors($spincolor) {
+  $color1: $spincolor !global;
+  $color2: darken($color1, 20%) !global;
+  $color3: desaturate(adjust-hue($spincolor, 120deg), 5%) !global;
+  $color4: desaturate(adjust-hue($spincolor, 240deg), 5%) !global;
+  $color5: darken($color4, 20%) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Complimentary Colors Creator Function
+@function complimentary_colors($spincolor) {
+  $color1: lighten($spincolor, 20%) !global;
+  $color2: lighten($spincolor, 10%) !global;
+  $color3: $spincolor !global;
+  $color4: darken(adjust-hue($spincolor, 180deg), 10%) !global;
+  $color5: darken($color4, 20%) !global;
+
+  $colors: $color1, $color2, $color3, $color4, $color5;
+  @return $colors;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Saturate Colors Function
+@function saturated_colors($colors, $saturate) {
+  $saturated: ();
+
+  @each $color in $colors {
+    $saturated: append($saturated, saturate($color, $saturate));
+  }
+
+  @return $saturated;
+}
+
+
+// -----------------------------------------------------------------------------------
+// DeSaturate Colors Function
+@function desaturated_colors($colors, $desaturate) {
+  $desaturated: ();
+
+  @each $color in $colors {
+    $desaturated: append($desaturated, desaturate($color, $desaturate));
+  }
+
+  @return $desaturated;
+}
+
+
+// -----------------------------------------------------------------------------------
+// Adjust Hue Colors Function
+@function adjust_hue_colors($colors, $adjust-hue) {
+  $hues: ();
+
+  @each $color in $colors {
+    $hues: append($hues, adjust-hue($color, $adjust-hue));
+  }
+
+  @return $hues;
+}
+
+// -----------------------------------------------------------------------------------
+// Color Wheel Function
+@function color_wheel($spincolor, $scheme, $saturate:100%, $desaturate:0%, $adjust-hue:0deg) {
+  $colors: ();
+
+  // Monochromatic
+  @if $scheme == monochrome {
+    $colors: monochrome_colors($spincolor);
+  }
+
+  // Analogous
+  @if $scheme == analogous {
+    $colors: analogous_colors($spincolor);
+  }
+
+  // Triad
+  @if $scheme == triad {
+    $colors: triad_colors($spincolor);
+  }
+
+  // Complimentary
+  @if $scheme == complimentary {
+    $colors: complimentary_colors($spincolor);
+  }
+
+  // Subtle
+  @if $scheme == subtle {
+    $colors: subtle_colors($spincolor);
+  }
+
+  $colors: saturated_colors($colors, $saturate);
+  $colors: desaturated_colors($colors, $desaturate);
+  $colors: adjust_hue_colors($colors, $adjust-hue);
+
+  @return $colors;
+}
+
+// -----------------------------------------------------------------------------------
+// Color Scheme Generator
+@mixin wheel($spincolor, $scheme, $saturate:100%, $desaturate:0%, $adjust-hue:0deg) {
+  $wheel_colors: color_wheel($spincolor, $scheme, $saturate, $desaturate, $adjust-hue);
+
+  div {
+    @for $i from 1 through length($wheel_colors) {
+      &:nth-child(#{$i}) { @include color-block(nth($wheel_colors, $i)); }
+    }
+  }
+}
+
+// -----------------------------------------------------------------------------------
+// ------- Color Identification ------- //
+@mixin colorName($color) {
+  $hue-output: hue($color);
+  $saturation-output: saturation($color);
+  $lightness-output: lightness($color);
+
+  // Find the Hue
+  @each $value, $degrees in $hue {
+    @if $hue-output >= $degrees {$hueColor: #{$value} !global;}
+
+    // Find the Lightness
+    @each $value, $range in $lightness {
+      @if $lightness-output >= $range {$lightenColor: #{$hueColor}#{$value} !global;}
+
+       // Find the Saturation
+      @each $value, $range in $saturation {
+        @if $saturation-output >= $range {$colorName: #{$lightenColor}#{$value} !global;}
+      }
+    }
+  }
+  &:after {
+    content:          '#{$color}';
+    font-size:        1.5em;
+  }
+}
+
+// -----------------------------------------------------------------------------------
+// Color Block Mixin
+@mixin color-block($color) {
+  @include colorName($color);
+  background:       $color;
+  line-height:      100px;
+  text-align:       center;
+  display:          block;
+
+  &:hover {
+    opacity:        0.7;
+  }
+}
+
+// -----------------------------------------------------------------------------------
+// Color Display Mixin
+@mixin color_display {
+  line-height:      100px;
+  text-align:       center;
+
+  &:hover {
+    opacity:        0.7;
+  }
+}
+// -----------------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------------
+// Change this color
+$base: #ff33cc;
+
+
+//-----------------------------------------------------------------
+// Create a Palette
+//-----------------------------------------------------------------
+$complement-color:     adjust_hue($base, 180);
+$secondary-color:      adjust_hue($base, 120);
+$tertiary-color:       adjust_hue($base, -120);
+
+
+
+.color-wheel {
+  .base-color {
+    @include color_display;
+    @include colorName($base);
+
+    &:after {
+      content:        '#{$base}';
+    }
+    display:          block;
+    background:       $base;
+  }
+
+  .triad-wheel-colors {
+    list-style:none;
+    @include wheel (
+      $base,    // Color
+      triad,    // Scheme (monochrome, analgous, triad, complimentary, subtle)
+      10%,      // Saturation in %
+      0,        // Desaturation in %
+      3deg      // Hue Adjustment
+    );
+  }
+
+
+  .monochrome-wheel-colors {
+    list-style:none;
+    @include wheel (
+      $base,          // Color
+      monochrome,     // Scheme (monochrome, analgous, triad, complimentary, subtle)
+      10%,            // Saturation in %
+      0,              // Desaturation in %
+      3deg            // Hue Adjustment
+    );
+  }
+
+
+
+  .analogous-wheel-colors {
+    list-style:none;
+    @include wheel (
+      $base,        // Color
+      analogous,    // Scheme (monochrome, analogous, triad, complimentary, subtle)
+      10%,          // Saturation in %
+      0,            // Desaturation in %
+      3deg          // Hue Adjustment
+    );
+  }
+
+
+
+  .complimentary-wheel-colors {
+    list-style:none;
+    @include wheel (
+      $base,            // Color
+      complimentary,    // Scheme (monochrome, analgous, triad, complimentary, subtle)
+      10%,              // Saturation in %
+      0,                // Desaturation in %
+      3deg              // Hue Adjustment
+    );
+  }
+
+
+  .subtle-wheel-colors {
+    list-style: none;
+    @include wheel (
+      $base,            // Color
+      subtle,           // Scheme (monochrome, analgous, triad, complimentary, subtle)
+      10%,              // Saturation in %
+      0,                // Desaturation in %
+      3deg              // Hue Adjustment
+    );
+  }
+
+}
+
+@mixin material-color-list($color) {
+  @include colorName($color);
+  background:       $color;
+  line-height:      50px;
+  text-align:       center;
+  display:          block;
+
+  &:hover {
+    opacity:        0.7;
+  }
+}
+
+// -----------------------------------------------------------------------------------
+// material-design(red)
+//
+@mixin material-design($paletteName) {
+  $colors: ();
+  $palette: map-get($material-palette, $paletteName);
+
+  @each $colorName, $hex in $palette {
+    $colors: append($colors, $hex)
+  }
+
+  .material-design-#{$paletteName} {
+    list-style: none;
+
+    li {
+      @for $i from length($colors) through 1 {
+        @if $i == 11 {
+            &:nth-child(#{$i}) { @include material-color-list(nth($colors, $i)); margin-top: 4px; }
+          } @else {
+            &:nth-child(#{$i}) { @include material-color-list(nth($colors, $i)); }
+          }
+      }
+    }
+
+  }
+}
+
+
+// -----------------------------------------------------------------------------------
+.material-design {
+  @include material-design(red);
+  @include material-design(pink);
+  @include material-design(purple);
+  @include material-design(deepPurple);
+  @include material-design(indigo);
+  @include material-design(blue);
+  @include material-design(lightBlue);
+  @include material-design(cyan);
+  @include material-design(teal);
+  @include material-design(green);
+  @include material-design(lightGreen);
+  @include material-design(lime);
+  @include material-design(yellow);
+  @include material-design(amber);
+  @include material-design(orange);
+  @include material-design(deepOrange);
+  @include material-design(brown);
+  @include material-design(grey);
+  @include material-design(blueGrey);
+}
+
+
+
+
+// -----------------------------------------------------------------------------------
+// Color Animation Stops Creation Function
+@function color-animation-stops($paletteName) {
+  $colors: ();
+  $stops: ();
+
+  $palette: map-get($material-palette, $paletteName);
+
+  @each $colorName, $hex in $palette {
+    $colors: append($colors, $hex)
+  }
+
+  $number_of_stops: length($colors);
+
+  @for $i from 1 through $number_of_stops {
+    $stop: (
+      "#{(($i * $number_of_stops) / 2)}%": nth($colors, $i)
+    );
+
+    $stops: map-merge($stops, $stop);
+  }
+
+
+  @for $i from ($number_of_stops + 1) through ($number_of_stops * 2) {
+    $stop: (
+      "#{(($i * $number_of_stops) / 2)}%": nth($colors, (($number_of_stops * 2) + 1 - $i))
+    );
+
+    $stops: map-merge($stops, $stop);
+  }
+
+
+  @return $stops;
+}
+
+
+
+
+// -----------------------------------------------------------------------------------
+// Mixin for keyframe animation
+@mixin keyframe-generator($map, $name) {
+  @keyframes #{$name} {
+    @each $key, $value in $map {
+      #{$key} { background: $value; }
+    }
+  }
+}
+
+
+
+// -----------------------------------------------------------------------------------
+@mixin animated-block($color, $duration: 3s, $timing: ease) {
+  $stops:                 color-animation-stops($color);
+  $animation-name:        #{$color}-color;
+  $animation-background:  map-get($stops, '5%');
+
+  @include keyframe-generator($stops, $animation-name);
+
+  .color-animation-#{$color} {
+    height:       100px;
+    width:        100px;
+    display:      block;
+    background:   $animation-background;
+    animation:    $animation-name $duration $timing infinite;
+  }
+}
+
+.color-animation {
+  @include animated-block(brown);
+}

@@ -17,24 +17,12 @@
 
 
 @charset "utf-8";
-
-// Libraries
-@import "bootstrap-sprockets";
-@import "bootstrap";
 @import "font-awesome";
-
 
 // Helpers
 @import "helpers/mixins";
-@import "helpers/fonts";
-@import "helpers/functions";
 @import "helpers/colors";
 @import "helpers/color_wheel";
-@import "helpers/variables";
-@import "helpers/flashes";
-@import "helpers/utilities";
-@import "helpers/buttons";
-@import "helpers/base";
 
 
 // Features

@@ -16,7 +16,7 @@
     <footer class='footer container'>
       <div class='row'>
         <p class='col-xs-12'>
-          <small>&copy; <%= year %> <%= app_name %> @ <%= company_name %></small>
+          <small>&copy; <%= year || Time.now.year %> <%= app_name %> @ <%= company_name %></small>
         </p>
       </div>
     </footer>

@@ -7,7 +7,7 @@ module Featurette
       class InstallGenerator < ::Rails::Generators::Base
         include ::Featurette::Actions
 
-        desc "Frontend support"
+        desc "Frontend Support"
 
         source_root ::File.expand_path("../templates", __FILE__)
         class_option :template_engine
@@ -19,6 +19,12 @@ module Featurette
         def create_font_directory
           log :create_font_directory, 'Creating a font directory'
           empty_directory "app/assets/fonts"
+        end
+
+        def ui_helper
+          log :ui_helper, ''
+          copy_file "helpers/ui_helper.rb",
+                    'app/helpers/ui_helper.rb'
         end
 
         def configure_app_generators
@@ -41,16 +47,9 @@ module Featurette
           mkdir_p "app/assets/stylesheets/helpers"
 
           %w|
-              buttons
               colors
               color_wheel
-              flashes
-              fonts
-              utilities
-              variables
-              mixins
-              functions
-              base|.each do |css|
+              mixins|.each do |css|
 
             copy_file "assets/stylesheets/#{css}.css.scss",
                       "app/assets/stylesheets/helpers/#{css}.css.scss"
@@ -64,18 +63,6 @@ module Featurette
           end
         end
 
-
-        def bootstrap_helper
-          log :bootstrap_helper, ''
-          copy_file "helpers/bootstrap_helper.rb",
-                    'app/helpers/bootstrap_helper.rb'
-        end
-
-
-        def add_bootstrap_javascript_files
-          log :add_bootstrap_javascript_files, ''
-          add_to_javascript_manifest 'bootstrap-sprockets', after: "//= require jquery_ujs\n"
-        end
 
         def recreate_application_stylesheet
           log :recreate_application_stylesheet, ''
@@ -124,11 +111,8 @@ module Featurette
         def copy_views_application_partials
           log :copy_views_application_partials, ''
 
-          copy_file "partials/flashes.html.erb",      'app/views/application/_flashes.html.erb'
-          copy_file "partials/nav.html.erb",          'app/views/application/_nav.html.erb'
           copy_file "partials/doctype.html.erb",      'app/views/application/_doctype.html.erb'
           copy_file "partials/footer.html.erb",       'app/views/application/_footer.html.erb'
-          copy_file "partials/form_errors.html.erb",  'app/views/application/_form_errors.html.erb'
         end
 
         def add_font_location_to_assets_path
@@ -146,17 +130,9 @@ module Featurette
           copy_file "config/app.yml", "config/app.yml"
         end
 
-        def copy_fonts
-          log :copy_fonts, ''
-          directory "assets/fonts/font-awesome",  "app/assets/fonts/font-awesome"
-          directory "assets/fonts/glyphicons",    "app/assets/fonts/glyphicons"
-        end
-
-        def add_bootstrap_gems
-          log :add_bootstrap_gems, ''
-          gem "bootstrap-sass"
+        def add_view_gems
+          log :add_view_gems, ''
           gem "font-awesome-sass"
-          gem "autoprefixer-rails"
           gem "local_time"
           gem "kaminari"
         end

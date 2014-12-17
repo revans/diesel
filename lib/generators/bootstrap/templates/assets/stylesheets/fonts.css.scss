@@ -1,0 +1,67 @@
+
+
+/* Font Face Mixin
+-------------------------------------------------------------------*/
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: $asset-pipeline) {
+  @font-face {
+    font-family: $font-family;
+    font-weight: $weight;
+    font-style: $style;
+
+    @if $asset-pipeline == true {
+      src: font-url('#{$file-path}.eot');
+      src: font-url('#{$file-path}.eot?#iefix')
+      format('embedded-opentype'),
+      font-url('#{$file-path}.woff')
+      format('woff'),
+      font-url('#{$file-path}.ttf')
+      format('truetype'),
+      font-url('#{$file-path}.svg##{$font-family}')
+      format('svg');
+    } @else {
+      src:
+      url('#{$file-path}.eot');
+      src:
+      url('#{$file-path}.eot?#iefix')
+      format('embedded-opentype'),
+      url('#{$file-path}.woff')
+      format('woff'),
+      url('#{$file-path}.ttf')
+      format('truetype'),
+      url('#{$file-path}.svg##{$font-family}')
+      format('svg');
+    }
+  }
+}
+
+
+
+/* Font-Awesome
+-------------------------------------------------------------------*/
+@include font-face(FontAwesome,  'font-awesome/fontawesome-webfont', normal, normal, $asset-pipeline: true);
+
+
+
+/* Glyphicons
+-------------------------------------------------------------------*/
+@include font-face(Glyphicons,  'glyphicons/flat-ui-pro-icons-regular', normal, normal, $asset-pipeline: true);
+
+
+
+/* Lato Fonts
+---------------------------------------------------------------------*/
+// @include font-face(Lato-Black,        'lato/lato-black',      normal, normal, $asset-pipeline: true);
+// @include font-face(Lato-Bold,         'lato/lato-bold',       bold, normal,   $asset-pipeline: true);
+// @include font-face(Lato-BoldItalic,   'lato/lato-bolditalic', bold, italic,   $asset-pipeline: true);
+// @include font-face(Lato-Italic,       'lato/lato-italic',     normal, italic, $asset-pipeline: true);
+// @include font-face(Lato-Light,        'lato/lato-light',      thin, normal,   $asset-pipeline: true);
+// @include font-face(Lato,              'lato/lato-regular',    normal, normal, $asset-pipeline: true);
+
+
+
+/* TaylorMade Font
+-------------------------------------------------------------------*/
+// @include font-face(ClubHaus,              '/fonts/ClubHaus/ClubHaus-Regular.ttf',     normal,         $asset-pipeline: true);
+// @include font-face(ClubHaus-Bold,         '/fonts/ClubHaus/ClubHaus-Bold.ttf',        bold,           $asset-pipeline: true);
+// @include font-face(ClubHaus-Oblique,      '/fonts/ClubHaus/ClubHaus-Oblique.ttf',     normal, italic, $asset-pipeline: true);
+// @include font-face(ClubHaus-BoldOblique,  '/fonts/ClubHaus/ClubHaus-BoldOblique.ttf', bold, italic,   $asset-pipeline: true);
