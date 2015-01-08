@@ -43,14 +43,19 @@ pagination), rack-cors, etc.
 
 Include the gem in your project's Gemfile:
 
-  group :development do
-    gem 'diesel'
-  end
+```
+group :development do
+  gem 'diesel'
+end
+```
 
 You'll then have a bunch of new generators which you can see by running the following terminal
 command:
 
-  rails g
+
+```
+rails g
+```
 
 
 
