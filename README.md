@@ -37,3 +37,20 @@ those to build upon.
 I've tried to stick as close to rails as possible, not using things like devise or the bower rails
 gem. There are some gems that get added like bootstrap-sass, font-awesome, bcrypt, kaminari (for
 pagination), rack-cors, etc.
+
+
+## Usage
+
+Include the gem in your project's Gemfile:
+
+  group :development do
+    gem 'diesel'
+  end
+
+You'll then have a bunch of new generators which you can see by running the following terminal
+command:
+
+  rails g
+
+
+
