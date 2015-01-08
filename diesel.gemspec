@@ -6,7 +6,7 @@ require 'diesel/version'
 Gem::Specification.new do |s|
   s.platform        = Gem::Platform::RUBY
   s.name            = "diesel"
-  s.version         = Featurette.version
+  s.version         = Diesel.version
   s.author          = "Robert Evans"
   s.email           = "robert@codewranglers.org"
   s.homepage        = "http://www.codewranglers.org"
