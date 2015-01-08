@@ -45,7 +45,7 @@ Include the gem in your project's Gemfile:
 
 ```
 group :development do
-  gem 'diesel'
+  gem 'diesel', github: 'revans/diesel'
 end
 ```
 
