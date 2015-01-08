@@ -1,12 +1,12 @@
 require 'rails/generators'
-require_relative '../../featurette/actions'
+require_relative '../../diesel/actions'
 
-module Featurette
+module Diesel
   module Bootstrap
     module Generators
 
       class InstallGenerator < ::Rails::Generators::Base
-        include ::Featurette::Actions
+        include ::Diesel::Actions
 
         desc "Add Bootstrap Support"
 

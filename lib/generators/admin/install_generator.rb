@@ -1,11 +1,11 @@
 require 'rails/generators'
-require_relative '../../featurette/actions'
+require_relative '../../diesel/actions'
 
-module Featurette
+module Diesel
   module Admin
     module Generators
       class InstallGenerator < ::Rails::Generators::Base
-        include ::Featurette::Actions
+        include ::Diesel::Actions
 
         desc "Generates the foundation for building an admin system"
 

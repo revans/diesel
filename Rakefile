@@ -1,7 +1,7 @@
 require 'rake/testtask'
 require 'rubygems/package_task'
 
-spec = eval(::File.read('featurette.gemspec'))
+spec = eval(::File.read('diesel.gemspec'))
 
 Gem::PackageTask.new(spec) do |p|
   p.gem_spec = spec
@@ -36,13 +36,13 @@ module CreateNewGenerator
 
     content = <<-EOF
 require 'rails/generators'
-require_relative '../../featurette/actions'
+require_relative '../../diesel/actions'
 
-module Featurette
+module Diesel
   module #{name.classify}
     module Generators
       class InstallGenerator < ::Rails::Generators::Base
-        include ::Featurette::Actions
+        include ::Diesel::Actions
 
         desc ""
 
