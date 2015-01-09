@@ -104,8 +104,8 @@ module Diesel
         def copy_api_config
           log :copy_api_config, ""
 
-          copy "config/api.yml",  "config/api.yml"
-          copy "lib/api_test.rb", "lib/api_test.rb"
+          copy_file "config/api.yml",  "config/api.yml"
+          copy_file "lib/api_test.rb", "lib/api_test.rb"
         end
 
 
