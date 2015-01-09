@@ -14,13 +14,13 @@ if Rails.env.development?
     extend Gorillapi
     extend self
 
-    test_api    url: ::Rails.application.config_for(:api).url
+    test_api    url: ::Rails.application.config_for(:api)["url"]
 
 
-    header  header_name:  ::Rails.application.config_for(:api).header_name,
-            api_key:      ::Rails.application.config_for(:api).token,
-            format:       ::Rails.application.config_for(:api).format,
-            version:      ::Rails.application.config_for(:api).version,
+    header  header_name:  ::Rails.application.config_for(:api)["header_name"],
+            api_key:      ::Rails.application.config_for(:api)["token"],
+            format:       ::Rails.application.config_for(:api)["format"],
+            version:      ::Rails.application.config_for(:api)["version"],
 
     def ping
       get "/api/v1/ping"

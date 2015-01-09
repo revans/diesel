@@ -10,7 +10,7 @@ class PrivateApiConstraints
 
   # Version defaults to the configuration setting
   def initialize(options)
-    @version = options.fetch(:version, ::Rails.application.config_for(:api).version)
+    @version = options.fetch(:version, ::Rails.application.config_for(:api)["version"])
     @default = options.fetch(:default, true)
   end
 
@@ -21,11 +21,11 @@ class PrivateApiConstraints
   private
 
   def application_name
-    @application_name ||= ::Rails.application.config_for(:api).app_name.to_s.downcase.gsub(/\s+/, '_')
+    @application_name ||= ::Rails.application.config_for(:api)["app_name"].to_s.downcase.gsub(/\s+/, '_')
   end
 
   def company_name
-    @company_name ||= ::Rails.application.config_for(:api).company_name.to_s.downcase.gsub(/\s+/, '_')
+    @company_name ||= ::Rails.application.config_for(:api)["company_name"].to_s.downcase.gsub(/\s+/, '_')
   end
 
 end

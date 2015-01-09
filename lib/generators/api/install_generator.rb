@@ -43,7 +43,7 @@ module Diesel
           api_namespace = <<-NAMESPACE
 
   namespace :api, defaults: { format: 'json' } do
-    namespace :v1, constraints: PrivateApiConstraints.new(version: ::Rails.application.config_for(:api).version, default: true) do
+    namespace :v1, constraints: PrivateApiConstraints.new(version: ::Rails.application.config_for(:api)["version"], default: true) do
 
     end
   end

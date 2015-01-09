@@ -21,6 +21,17 @@ module Diesel
           empty_directory "app/assets/fonts"
         end
 
+        def copy_settings_concern
+          log :copy_settings_concern, ""
+          copy_file "controllers/concerns/settings.rb",
+                    "app/controllers/concerns/settings.rb"
+
+          inject_into_file "app/controllers/application_controller.rb",
+            "\n  include Settings\n",
+            after: "protect_from_forgery with: :exception\n"
+
+        end
+
         def ui_helper
           log :ui_helper, ''
           copy_file "helpers/ui_helper.rb",
