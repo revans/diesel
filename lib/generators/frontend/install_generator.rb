@@ -70,8 +70,8 @@ module Diesel
         def recreate_application_stylesheet
           log :recreate_application_stylesheet, ''
           remove_file "app/assets/stylesheets/application.css"
-          copy_file "assets/stylesheets/application.css.scss",
-                    'app/assets/stylesheets/application.css.scss'
+          copy_file "assets/stylesheets/application.scss",
+                    'app/assets/stylesheets/application.scss'
         end
 
         def customize_error_pages

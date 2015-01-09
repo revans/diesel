@@ -70,7 +70,7 @@ module Diesel
 @import "helpers/base";
 
           EOF
-          inject_into_file "app/assets/stylesheets/application.css.scss", content,
+          inject_into_file "app/assets/stylesheets/application.scss", content,
                 after:    " */",
                 verbose:  false
         end
