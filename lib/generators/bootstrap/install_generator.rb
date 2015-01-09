@@ -60,9 +60,9 @@ module Diesel
 
 // Helpers
 // colors here
+// mixins goes here
 @import "helpers/fonts";
 @import "helpers/functions";
-// mixins goes here
 @import "helpers/variables";
 @import "helpers/flashes";
 @import "helpers/utilities";
@@ -83,14 +83,10 @@ module Diesel
           copy_file "partials/form_errors.html.erb",  'app/views/application/_form_errors.html.erb'
         end
 
-        def copy_fonts
-          log :copy_fonts, ''
-          directory "assets/fonts/glyphicons",    "app/assets/fonts/glyphicons"
-        end
-
         def add_bootstrap_gems
           log :add_bootstrap_gems, ''
           gem "bootstrap-sass"
+          gem "font-awesome-sass"
           gem "autoprefixer-rails"
         end
 

@@ -149,7 +149,6 @@ module Diesel
 
         def add_view_gems
           log :add_view_gems, ''
-          gem "font-awesome-sass"
           gem "local_time"
           gem "kaminari"
         end
