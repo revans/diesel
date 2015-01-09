@@ -109,6 +109,13 @@ module Diesel
           log :create_login_template, ""
           copy_file "views/login_layout.html.erb",
                     'app/views/layouts/login.html.erb'
+
+
+          mkdir_p "app/views/application"
+          touch "app/views/application/_doctype.html.erb"
+          touch "app/views/application/_nav.html.erb"
+          touch "app/views/application/_flashes.html.erb"
+          touch "app/views/application/_footer.html.erb"
         end
 
 

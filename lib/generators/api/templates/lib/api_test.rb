@@ -20,7 +20,7 @@ if Rails.env.development?
     header  header_name:  ::Rails.application.config_for(:api)["header_name"],
             api_key:      ::Rails.application.config_for(:api)["token"],
             format:       ::Rails.application.config_for(:api)["format"],
-            version:      ::Rails.application.config_for(:api)["version"],
+            version:      ::Rails.application.config_for(:api)["version"]
 
     def ping
       get "/api/v1/ping"
