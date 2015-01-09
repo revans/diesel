@@ -44,7 +44,7 @@ module Diesel
 
   namespace :api, defaults: { format: 'json' } do
     namespace :v1, constraints: PrivateApiConstraints.new(version: ::Rails.application.config_for(:api)["version"], default: true) do
-
+      get "/ping" => "ping#index"
     end
   end
 
