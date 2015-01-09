@@ -37,6 +37,20 @@ module Diesel
         end
 
 
+        def add_is_user_admin_check
+          log :add_is_user_admin_check, ""
+          content = <<-EOF
+  def is_admin?
+    false
+  end
+          EOF
+
+          inject_into_file "app/models/users.rb",
+            content,
+            before: "end\n"
+        end
+
+
         def execute_bundle_install
           log :execute_bundle_install, ""
           in_root { run "bundle" }
