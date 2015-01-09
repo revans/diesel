@@ -38,6 +38,11 @@ module Diesel
           copy_file "controllers/sessions_controller.rb",  "app/controllers/sessions_controller.rb"
           copy_file "controllers/users_controller.rb",     "app/controllers/users_controller.rb"
 
+          # Add Concern to Application Controller
+          inject_into_file 'app/controllers/application_controller.rb',
+            "\n  include SessionAuthentication\n",
+            after: "protect_from_forgery with: :exception\n"
+
           # Views
           copy_file "views/sessions_new.html.erb",    "app/views/sessions/new.html.erb"
           copy_file "views/users_edit.html.erb",      "app/views/users/edit.html.erb"

@@ -115,7 +115,7 @@ module Diesel
 
         def add_javascript_angular_loader
           content = <<-CON
-@App = angular.module('#{application_name.classify}', ['ngResource', 'ngSanitize', 'ngCookies'])
+@App = angular.module('#{application_name.classify}', ['ngResource'])
 
 @App.config ($httpProvider) ->
   authToken = angular.element('meta[name="csrf-token"]').attr('content')

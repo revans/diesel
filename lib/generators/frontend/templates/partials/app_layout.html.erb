@@ -5,9 +5,11 @@
     <![endif]-->
 
     <header class='header-nav'>
+      <%= render 'nav' %>
     </header>
 
     <main class='main-section container' role='main'>
+      <%= render "flashes" %>
       <%= yield %>
     </main>
 

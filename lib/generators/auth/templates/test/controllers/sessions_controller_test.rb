@@ -10,6 +10,9 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:user)
     assert_template :new
+
+    refute @controller.current_user
+    refute @controller.logged_in?
   end
 
   def test_login
@@ -20,6 +23,9 @@ class SessionsControllerTest < ActionController::TestCase
 
     assert_redirected_to dashboard_url
     assert assigns(:user)
+
+    assert @controller.current_user
+    assert @controller.logged_in?
   end
 
   def test_failed_login
@@ -29,10 +35,14 @@ class SessionsControllerTest < ActionController::TestCase
     }
 
     assert_redirected_to login_url
+    refute @controller.current_user
+    refute @controller.logged_in?
   end
 
   def test_logout
     delete :destroy
     assert_redirected_to login_url
+    refute @controller.current_user
+    refute @controller.logged_in?
   end
 end

@@ -3,13 +3,13 @@
 bob:
   name: Bob
   email: bob@example.com
-  password: 123456
+  # password is 123456
   password_digest: "$2a$04$gXHtoIIIZQ8rhTiZVKJ1COdJumRG/eih4Uxf5S0oz.sxFpsLU9ksm"
   accept_terms: true
 
 mary:
   name: Mary
   email: mary@example.com
-  password: 123456
+  # password is 123456
   password_digest: "$2a$04$gXHtoIIIZQ8rhTiZVKJ1COdJumRG/eih4Uxf5S0oz.sxFpsLU9ksm"
   accept_terms: true

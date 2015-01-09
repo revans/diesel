@@ -21,6 +21,9 @@ module Diesel
           log :bootstrap_helper, ''
           copy_file "helpers/bootstrap_helper.rb",
                     'app/helpers/bootstrap_helper.rb'
+
+          copy_file "helpers/bootstrap_helper_test.rb",
+                    'test/helpers/bootstrap_helper_test.rb'
         end
 
         def copy_stylesheet_helpers
@@ -31,13 +34,13 @@ module Diesel
               buttons
               flashes
               fonts
-              utilities
-              variables
               functions
+              variables
+              utilities
               base|.each do |css|
 
-            copy_file "assets/stylesheets/#{css}.css.scss",
-                      "app/assets/stylesheets/helpers/#{css}.css.scss"
+            copy_file "assets/stylesheets/#{css}.scss",
+                      "app/assets/stylesheets/helpers/#{css}.scss"
           end
         end
 
@@ -56,8 +59,10 @@ module Diesel
 @import "font-awesome";
 
 // Helpers
+// colors here
 @import "helpers/fonts";
 @import "helpers/functions";
+// mixins goes here
 @import "helpers/variables";
 @import "helpers/flashes";
 @import "helpers/utilities";

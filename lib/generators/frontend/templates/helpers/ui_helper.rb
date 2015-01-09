@@ -1,6 +1,6 @@
 module UiHelper
-  def font_awesome(name, options = '')
-    content_tag(:span, '', class: "fa fa-#{name} #{options}".strip)
+  def font_awesome(name, classnames = '')
+    content_tag(:span, '', class: "fa fa-#{name} #{classnames}".strip)
   end
 
   def link_to_delete(url, title='delete', options = {}, &block)

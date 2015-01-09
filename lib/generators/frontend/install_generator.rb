@@ -25,6 +25,9 @@ module Diesel
           log :ui_helper, ''
           copy_file "helpers/ui_helper.rb",
                     'app/helpers/ui_helper.rb'
+
+          copy_file "helpers/ui_helper_test.rb",
+                    'test/helpers/ui_helper_test.rb'
         end
 
         def configure_app_generators
@@ -51,8 +54,8 @@ module Diesel
               color_wheel
               mixins|.each do |css|
 
-            copy_file "assets/stylesheets/#{css}.css.scss",
-                      "app/assets/stylesheets/helpers/#{css}.css.scss"
+            copy_file "assets/stylesheets/#{css}.scss",
+                      "app/assets/stylesheets/helpers/#{css}.scss"
           end
         end
 
@@ -113,6 +116,9 @@ module Diesel
 
           copy_file "partials/doctype.html.erb",      'app/views/application/_doctype.html.erb'
           copy_file "partials/footer.html.erb",       'app/views/application/_footer.html.erb'
+
+          touch "app/views/application/_nav.html.erb"
+          touch "app/views/application/_flashes.html.erb"
         end
 
         def add_font_location_to_assets_path
