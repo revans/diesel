@@ -30,14 +30,7 @@ module Diesel
           log :copy_stylesheet_helpers, ''
           mkdir_p "app/assets/stylesheets/helpers"
 
-          %w|
-              buttons
-              flashes
-              fonts
-              functions
-              variables
-              utilities
-              base|.each do |css|
+          %w|fonts|.each do |css|
 
             copy_file "assets/stylesheets/#{css}.scss",
                       "app/assets/stylesheets/helpers/#{css}.scss"
@@ -56,18 +49,11 @@ module Diesel
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
 @import "font-awesome";
 
-// Helpers
-// colors here
-// mixins goes here
+
 @import "helpers/fonts";
-@import "helpers/functions";
-@import "helpers/variables";
-@import "helpers/flashes";
-@import "helpers/utilities";
-@import "helpers/buttons";
-@import "helpers/base";
 
           EOF
           inject_into_file "app/assets/stylesheets/application.scss", content,

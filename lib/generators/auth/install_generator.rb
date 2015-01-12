@@ -28,7 +28,10 @@ module Diesel
         def generate_auth_model
           log :generate_auth_model, ""
           generate :model, "user", "name:string", "email:string", "password_digest:string", "accept_terms:boolean"
-          inject_into_file 'app/models/user.rb', "  has_secure_password\n  validates_acceptance_of :accept_terms, accept: true\n", after: "class User < ActiveRecord::Base\n"
+
+          inject_into_file 'app/models/user.rb',
+          "  has_secure_password\n  validates_acceptance_of :accept_terms, accept: true\n",
+          after: "class User < ActiveRecord::Base\n"
         end
 
 
