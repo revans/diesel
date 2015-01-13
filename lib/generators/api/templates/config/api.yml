@@ -1,7 +1,7 @@
 default: &default
   app_name: 'AppName'
   company_name: 'CompanyName'
-  developer_name: 'Code Wranglers, Inc'
+  developer_name: 'DeveloperName'
   version: 1
   format: 'json'
 

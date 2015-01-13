@@ -19,7 +19,7 @@ module ApiAuthTestHelper
   # end
 
   def api_token
-    @api_token ||= api_config.token
+    @api_token ||= api_config['token']
   end
 
   def api_config
