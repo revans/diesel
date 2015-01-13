@@ -45,7 +45,7 @@ module Diesel
   end
           EOF
 
-          inject_into_file "app/models/users.rb",
+          inject_into_file "app/models/user.rb",
             content,
             before: "end\n"
         end
