@@ -14,10 +14,6 @@ module ApiAuthTestHelper
     @request.env["HTTP_AUTHORIZATION"] = token
   end
 
-  # def authorization_token
-  #   @authorization_token ||= ::ActionController::HttpAuthentication::Token.encode_credentials(api_token)
-  # end
-
   def api_token
     @api_token ||= api_config['token']
   end

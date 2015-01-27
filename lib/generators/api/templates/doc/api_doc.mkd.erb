@@ -9,8 +9,12 @@ Contents
 
 * [Authentication] (#authentication)
 * [Ping] (#ping)
+* [Register](#register)
+* [Login](#login)
+* [View Profile](#profile)
+* [Edit Profile](#edit_profile)
 
-------------------------------------------------------------------------------------------------------------------------
+---
 <a id="authentication"></a>
 
 
@@ -28,27 +32,198 @@ in the header, include:
 
 updated <%= Time.now.strftime("%Y.%m.%d") %>
 
-------------------------------------------------------------------------------------------------------------------------
+---
 <a id="ping"></a>
 
 ## Ping
 
-### GET /api/v1/ping
+### GET /ping
 
-### Request:
-Content-Type: application/json
+### cURL Request:
 
-#### cURL:
+	curl -X GET -k -i -v \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json; version=1" \
+  -H "AUTHORIZATION: token"  \
+  http://staging.myapi.com/ping
 
-	curl -X GET -k -i -v -H "Content-Type: application/json" -H "Accept: application/vnd.company_name.project_name-v1+json" -H "AUTHORIZATION: token"  http://staging.myapi.com/api/v1/ping
+### Response Body:
 
-### Response:
-Content-Type: application/json
-
-#### Body:
-JSON
-current successful example:
-
+```
 	"pong"
+```
 
 updated <%= Time.now.strftime("%Y.%m.%d") %>
+
+---
+<a id="register"></a>
+
+## Register
+
+### POST /register
+
+#### cURL Request:
+
+```
+    curl -X POST -k -i -v \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json; version=1" \
+    -H "Authorization: token" \
+    -d '{ "user": { "email": "me@me.com", "name": "ME", "password": "123456", "password_confirmation": "123456" }}' \
+    http://staging.myapi.com/register
+```
+
+#### Response Body:
+
+```
+{
+    "id":            1,
+    "name":          "ME",
+    "email":         "me@me.com",
+    "edit_url":      "/users/1",
+    "profile_url":   "/users/1"
+}
+```
+
+#### Failed Response Body:
+
+If the email is already taken:
+
+```
+{ "email": ["has already been taken"] }
+```
+
+If the password confirmation doesn't match:
+
+```
+{"password_confirmation"=>["doesn't match Password"]}
+```
+
+updated <%= Time.now.strftime("%Y.%m.%d") %>
+
+---
+<a id="login"></a>
+
+## Login
+
+### POST /login
+
+#### cURL Request:
+
+```
+    curl -X POST -k -i -v \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json; version=1" \
+    -H "Authorization: token" \
+    -d '{ "user": { "email": "me@me.com", "password": "1234565" }}' \
+    http://staging.myapi.com/login
+```
+
+#### Response Body:
+
+```
+{
+    "id":            1,
+    "name":          "ME",
+    "email":         "me@me.com",
+    "edit_url":      "/users/1",
+    "profile_url":   "/users/1"
+}
+```
+
+#### Failed Response Body:
+
+HTTP/1.1 422 Unprocessable Entity
+
+```
+{
+  "error": "Failed login"
+}
+```
+
+updated <%= Time.now.strftime("%Y.%m.%d") %>
+
+---
+<a id="profile"></a>
+
+## View Profile
+
+### GET /users/:id
+
+#### cURL Request:
+
+```
+    curl -X GET -k -i -v \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json; version=1" \
+    -H "Authorization: token" \
+    -d '{ "id": 1 }' \
+    http://staging.myapi.com/users/1
+```
+
+#### Response Body:
+
+```
+{
+    "id":            1,
+    "name":          "ME",
+    "email":         "me@me.com",
+    "edit_url":      "/users/1",
+    "profile_url":   "/users/1"
+}
+```
+
+#### Failed Response Body:
+
+```
+{
+
+}
+```
+
+updated <%= Time.now.strftime("%Y.%m.%d") %>
+
+---
+<a id="edit_profile"></a>
+
+## Edit Profile
+
+### PUT /users/:id
+
+
+#### cURL Request:
+
+```
+    curl -X PUT -k -i -v \
+    -H "Content-Type: application/json" \
+    -H "Accept: application/json; version=1" \
+    -H "Authorization: token" \
+    -d '{ "user": { "name": "John Smith", "password": "1234567", "password_confirmation": "1234567" } }' \
+    http://staging.myapi.com/users/1
+```
+
+
+
+#### Response Body:
+
+```
+{
+    "id":            1,
+    "name":          "ME",
+    "email":         "me@me.com",
+    "edit_url":      "/users/1",
+    "profile_url":   "/users/1"
+}
+```
+
+#### Failed Response Body:
+
+```
+{
+
+}
+```
+
+updated <%= Time.now.strftime("%Y.%m.%d") %>
+
+---

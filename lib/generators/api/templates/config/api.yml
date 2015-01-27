@@ -31,4 +31,4 @@ production:
   <<: *default
   app_url: 'url.com'
   header_name: 'companyname.app_name-production'
-  api_token: 'token'
+  token: 'token'

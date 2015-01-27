@@ -1,12 +1,10 @@
-module Api
-  module V1
-    class PingController < ApiController
-      skip_before_action :authenticate
 
-      def index
-        render json: 'pong'.to_json, status: 200
-      end
+class PingController < ActionController::Base
+  skip_before_action :authenticate
 
-    end
+  def index
+    render json: 'pong'.to_json, status: 200
   end
+
 end
+

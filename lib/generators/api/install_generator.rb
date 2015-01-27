@@ -24,34 +24,77 @@ module Diesel
           end
         end
 
-        def copy_api_constraints_library
-          log :copy_api_constraints_library, ""
+        def add_ping_controller
+          log :add_ping_controller, ''
 
-          copy_file "lib/api_constraints.rb",
-                    'lib/api_constraints.rb'
+          copy_file 'controllers/ping_controller.rb',
+            'app/controllers/ping_controller.rb'
         end
 
-        def add_api_constraints_to_routes
-          log :add_api_constraints_to_routes, ""
+        def add_controller_concerns
+          log :add_controller_concerns, ''
 
-          insert_into_file('config/routes.rb', "require Rails.root.join('lib/api_constraints')\n\n", before: "Rails.application.routes.draw do\n")
+          copy_file 'controllers/api_authentication.rb',
+              'app/controllers/concerns/api_authentication.rb'
+
+          copy_file 'controllers/api_versioning.rb',
+              'app/controllers/concerns/api_versioning.rb'
         end
 
-        def add_api_route_namespace
-          log :add_api_route_namespace, ""
 
-          api_namespace = <<-NAMESPACE
+        def add_application_controller_methods
+          log :add_application_controller_methods, ''
+          content = <<-EOF
 
-  namespace :api, defaults: { format: 'json' } do
-    namespace :v1, constraints: PrivateApiConstraints.new(version: ::Rails.application.config_for(:api)["version"], default: true) do
-      get "/ping" => "ping#index"
-    end
+  include ApiVersioning,
+          ApiAuthentication
+
+
+  def json_requested?
+    request.format.json?
   end
 
-          NAMESPACE
+  def render_unauthorized
+    self.headers['WWW-Authenticate'] = "Token realm=\"#{::Rails.application.config_for(:api)['company_name']}\""
+    render json: 'Bad credentials', status: 401
+  end
 
-          route api_namespace
+          EOF
+
+          insert_into_file('app/controllers/application_controller.rb',
+                 content,
+                 after: "protect_from_forgery with: :exception\n\n")
+
         end
+
+        # def copy_api_constraints_library
+        #   log :copy_api_constraints_library, ""
+
+        #   copy_file "lib/api_constraints.rb",
+        #             'lib/api_constraints.rb'
+        # end
+
+        # def add_api_constraints_to_routes
+        #   log :add_api_constraints_to_routes, ""
+
+        #   insert_into_file('config/routes.rb', "require Rails.root.join('lib/api_constraints')\n\n", before: "Rails.application.routes.draw do\n")
+        # end
+
+  #       def add_api_route_namespace
+  #         log :add_api_route_namespace, ""
+
+  #         api_namespace = <<-NAMESPACE
+
+  # namespace :api, defaults: { format: 'json' } do
+  #   namespace :v1, constraints: PrivateApiConstraints.new(version: ::Rails.application.config_for(:api)["version"], default: true) do
+  #     get "/ping" => "ping#index"
+  #   end
+  # end
+
+  #         NAMESPACE
+
+  #         route api_namespace
+  #       end
 
 
         def copy_disable_xml_params
@@ -68,17 +111,17 @@ module Diesel
                     'lib/tasks/api.rake'
         end
 
-        def copy_api_controllers
-          log :copy_api_controllers, ""
+        # def copy_api_controllers
+        #   log :copy_api_controllers, ""
 
-          mkdir_p   "app/controllers/api/v1"
+        #   mkdir_p   "app/controllers/api/v1"
 
-          copy_file "controllers/api_controller.rb",
-                    'app/controllers/api/v1/api_controller.rb'
+        #   copy_file "controllers/api_controller.rb",
+        #             'app/controllers/api/v1/api_controller.rb'
 
-          copy_file "controllers/ping_controller.rb",
-                    'app/controllers/api/v1/ping_controller.rb'
-        end
+        #   copy_file "controllers/ping_controller.rb",
+        #             'app/controllers/api/v1/ping_controller.rb'
+        # end
 
 
         def copy_api_test_helpers
