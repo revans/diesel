@@ -10,11 +10,11 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   def test_registration
     post :create, user: {
-      name:                   'Bill Example',
+      first_name:             'Bill',
+      last_name:              'Example',
       email:                  'bill@example.com',
       password:               '123456',
       password_confirmation:  '123456',
-      accept_terms:           true,
     }
 
     assert_redirected_to login_url
@@ -23,11 +23,11 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   def test_failed_registration
     post :create, user: {
-      name:                   'Bill Example',
+      first_name:             'Bill',
+      last_name:              'Example',
       email:                  'bill@example.com',
       password:               '123456',
-      password_confirmation:  '123456',
-      accept_terms:           false,
+      password_confirmation:  '1234567',
     }
 
     assert_template :new
