@@ -28,7 +28,7 @@ module Diesel
         log :generate_auth_model, ""
         generate :model, "user",  "first_name:string",
                                   "last_name:string",
-                                  "email:string",
+                                  "email:string:index",
                                   "password_digest:string"
 
         inject_into_file 'app/models/user.rb',
@@ -42,11 +42,6 @@ module Diesel
         # Controllers
         copy_file "controllers/sessions_controller.rb",  "app/controllers/sessions_controller.rb"
         copy_file "controllers/users_controller.rb",     "app/controllers/users_controller.rb"
-
-        # Add Concern to Application Controller
-        inject_into_file 'app/controllers/application_controller.rb',
-          "\n  include SessionAuthentication\n",
-          after: "protect_from_forgery with: :exception\n"
 
         # Views
         copy_file "views/sessions_new.html.erb",    "app/views/sessions/new.html.erb"
@@ -99,6 +94,8 @@ module Diesel
 
         copy_file "test/fixtures/users.yml",
                   "test/fixtures/users.yml", force: true
+
+        copy_file "config/api.yml", "config/api.yml"
       end
 
       def add_auth_routes
@@ -156,7 +153,7 @@ root "sessions#new"
   end
 
   def render_unauthorized
-    self.headers['WWW-Authenticate'] = "Token realm=\"\#{api_config['company_name']}\""
+    self.headers['WWW-Authenticate'] = "Token realm='#{api_config['company_name']}'"
     render json: 'Bad credentials', status: 401
   end
 
