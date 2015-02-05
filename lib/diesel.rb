@@ -2,11 +2,12 @@ require 'diesel/version'
 require 'diesel/actions'
 require 'rails'
 
+require 'generators/auth/auth_generator'
+
 require 'generators/admin/install_generator'
 require 'generators/angular/install_generator'
 require 'generators/api/install_generator'
 require 'generators/app_server/install_generator'
-require 'generators/auth/install_generator'
 require 'generators/frontend/install_generator'
 require 'generators/geo/install_generator'
 require 'generators/mail_sandbox/install_generator'
