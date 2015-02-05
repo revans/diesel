@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>       <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>          <html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>          <html class="no-js lt-ie10 lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9]>          <html class="no-js lt-ie10" lang="en"> <![endif]-->
+
+<!--[if IEMobile 7 ]>   <html class="no-js iem7" lang="en"> <![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)]><!-->
+
+<html class="no-js" lang='en'>
+<!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="description" content="">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="cleartype" content="on">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/plain" rel="Code Wranglers, Inc." href="humans.txt" />
+
+    <!-- Specify the URI of your favicon in href attribute -->
+    <link rel="shortcut icon" type="image/png" href="">
+
+    <!-- Makes it chrome-less once bookmarked to the phone's home screen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="minimal-ui"/>
+
+    <!--
+      Load htmlshiv and Respond.js for old IE versions so we can use
+      HTML5 elements and media queries
+    -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+  <!-- Android and iOS -->
+  <!--
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="196x196" href="">
+    <link rel="apple-touch-icon" sizes="152x152" href="">
+  -->
+
+  <!--
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/touch/apple-touch-icon-144x144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/touch/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/touch/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/assets/touch/apple-touch-icon-57x57-precomposed.png">
+    <link rel="shortcut icon" href="/assets/touch/apple-touch-icon.png">
+  -->
+
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <!--
+    <meta name="msapplication-TileImage" content="/assets/touch/apple-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#222222">
+  -->
+
+
+  <!-- For iOS web apps. Delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+  <!--
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+  -->
+
+  <!-- This script prevents links from opening in Mobile Safari. https://gist.github.com/1042026 -->
+  <!--
+    <script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>
+  -->
+
+  <!-- Twitter Meta
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:site" content="@" />
+    <meta property="twitter:title" content="" />
+    <meta property="twitter:description" content="" />
+    <meta property="twitter:creator" content="" />
+    <meta property="twitter:image:src" content="" />
+    <meta property="twitter:domain" content="" />
+  -->
+
+  <!-- Facebook
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content=""/>
+    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="fb:app_id" content="" />
+  -->
+
+  <!--
+    <meta name="og:url" content="" />
+    <link rel="canonical" href="" />
+    <link rel="prefetch" href="" />
+    <link rel="prerender" href="" />
+  -->
+
+    <!-- Reference non-render-blocking scripts here
+     and use async attribute if possible
+     Example: <script src="" async></script> -->
+
+
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%# javascript_include_tag "modernizr", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+
+    <title><%= page_title %></title>
+  </head>

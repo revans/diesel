@@ -1,0 +1,12 @@
+development:
+  google:
+    analytics_site_id: 'UA-XXXXX-X'
+test:
+  google:
+    analytics_site_id: 'UA-XXXXX-X'
+staging:
+  google:
+    analytics_site_id: 'UA-XXXXX-X'
+production:
+  google:
+    analytics_site_id: 'UA-XXXXX-X'

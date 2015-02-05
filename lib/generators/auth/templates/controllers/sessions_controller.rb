@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   skip_before_action :require_authentication, except: :destroy
-  layout 'login'
 
   def new
     @user = User.new

@@ -1,0 +1,12 @@
+/*
+ *= require normalize
+ *= require_self
+ */
+
+@charset "utf-8";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+@import "helpers/fonts";

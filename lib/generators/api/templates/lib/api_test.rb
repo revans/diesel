@@ -23,7 +23,7 @@ if Rails.env.development?
             version:      ::Rails.application.config_for(:api)["version"]
 
     def ping
-      get "/api/v1/ping"
+      get "/ping"
     end
 
   end

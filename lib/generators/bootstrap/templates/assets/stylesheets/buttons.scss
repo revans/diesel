@@ -1,7 +1,0 @@
-
-
-/* Bootstrap Button using different colors
--------------------------------------------------------------------*/
-.btn-clouds {
-  @include button-variant($wet-asphalt, $clouds, darken($clouds, 5%));
-}
