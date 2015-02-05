@@ -156,7 +156,7 @@ root "sessions#new"
   end
 
   def render_unauthorized
-    self.headers['WWW-Authenticate'] = "Token realm=\"#{api_config['company_name']}\""
+    self.headers['WWW-Authenticate'] = "Token realm=\"\#{api_config['company_name']}\""
     render json: 'Bad credentials', status: 401
   end
 
