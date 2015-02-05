@@ -15,28 +15,28 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_updating_profile
     patch :update, id: @user.id, user: {
-      name: 'Bob Smith'
+      first_name: 'Bob'
     }
 
     assert_redirected_to edit_user_url(assigns(:user))
-    assert_equal 'Bob Smith', assigns(:user).name
+    assert_equal 'Bob', assigns(:user).first_name
   end
 
   def test_updating_profile_via_json
     patch :update, id: @user.id, user: {
-      name: 'Bob Smith'
+      last_name: 'Smith'
     }, format: :json
 
     assert_response :success
     assert_template :show
-    assert_equal 'Bob Smith', assigns(:user).name
+    assert_equal 'Smith', assigns(:user).last_name
   end
 
 
   def test_update_failure
     patch :update, id: @user.id, user: {
-      password: '123456',
-      password_confirmation: '123'
+      password:               '123456',
+      password_confirmation:  '123'
     }
 
     assert_response 200
@@ -45,8 +45,8 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_update_failure_via_json
     patch :update, id: @user.id, user: {
-      password: '123456',
-      password_confirmation: '123'
+      password:               '123456',
+      password_confirmation:  '123'
     }, format: :json
 
     assert_response 422

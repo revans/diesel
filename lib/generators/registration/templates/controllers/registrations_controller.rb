@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
       if @user.save
         set_user_session(@user)
         format.html { redirect_to login_url, notice: 'Your account has been created. You can now login.' }
-        format.json { render :show, status: :created, location: @user }
+        format.json { render template: 'users/show', status: :created, location: @user }
       else
         clean_user_session
         format.html { render :new, notice: 'Your account could NOT be created.' }
@@ -27,7 +27,7 @@ class RegistrationsController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :email, :password, :password_confirmation, :name, :accept_terms
+      :email, :password, :password_confirmation, :first_name, :last_name
     )
   end
 

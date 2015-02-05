@@ -1,0 +1,34 @@
+default: &default
+  app_name: ''
+  company_name: ''
+  developer_name: ''
+  version: 1
+  format: 'json'
+
+
+development:
+  <<: *default
+  url: 'localhost:3000'
+  header_name: 'company.appname-development'
+  token: 'token'
+
+
+test:
+  <<: *default
+  url: 'localhost:3000'
+  header_name: 'company.appname-test'
+  token: 'token'
+
+
+staging:
+  <<: *default
+  url: 'staging.url.com'
+  header_name: 'company.appname-staging'
+  token: 'token'
+
+
+production:
+  <<: *default
+  app_url: 'url.com'
+  header_name: 'company.appname-production'
+  token: 'token'

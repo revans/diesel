@@ -10,15 +10,28 @@
 
     <%= form_for @user do |f| %>
       <div class="form-group">
-        <label for='user_email'>
-          <%= t('login.form.label.name') %>
+        <label for='user_first_name'>
+          <%= t('login.form.label.first_name') %>
         </label>
 
         <div class="input-group">
           <span class="input-group-addon">
             <i class="fa fa-user"></i>
           </span>
-          <%= f.text_field :name, placeholder: 'First & Last Name', class: 'form-control input-lg', autofocus: 'autofocus' %>
+          <%= f.text_field :first_name, placeholder: 'Last Name', class: 'form-control input-lg', autofocus: 'autofocus' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for='user_last_name'>
+          <%= t('login.form.label.last_name') %>
+        </label>
+
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <%= f.text_field :last_name, placeholder: 'Last Name', class: 'form-control input-lg', autofocus: 'autofocus' %>
         </div>
       </div>
 
@@ -32,6 +45,32 @@
             <i class="fa fa-envelope"></i>
           </span>
           <%= f.text_field :email, placeholder: 'Email Address', class: 'form-control input-lg', autofocus: 'autofocus' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for='user_phone'>
+          <%= t('login.form.label.phone') %>
+        </label>
+
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <%= f.text_field :phone, placeholder: 'Phone Number', class: 'form-control input-lg', autofocus: 'autofocus' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for='user_zip'>
+          <%= t('login.form.label.zipcode') %>
+        </label>
+
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-user"></i>
+          </span>
+          <%= f.text_field :zipcode, placeholder: 'Zip Code', class: 'form-control input-lg', autofocus: 'autofocus' %>
         </div>
       </div>
 

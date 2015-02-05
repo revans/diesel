@@ -6,6 +6,11 @@ require 'fileutils'
 module Diesel
   module Actions
 
+    def bundle
+      log :bundle, "Running Bundle..."
+      in_root { run "bundle" }
+    end
+
     def touch(filename)
       log :touch, filename
       in_root { run "touch #{filename}" }
@@ -88,6 +93,15 @@ module Diesel
       end
 
       ::File.open(path, "w") { |file| file.write(contents) }
+    end
+
+
+    def insert_after(file, after, code)
+      inject_into_file(file, code, after: "#{after}\n")
+    end
+
+    def insert_before(file, before, code)
+      inject_into_file(file, "\n#{code}\n", before: before )
     end
 
 
