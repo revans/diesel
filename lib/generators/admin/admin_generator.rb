@@ -28,11 +28,15 @@ module Diesel
         log :add_admin_namespaced_route, ""
         admin_namespace = <<-NAMESPACE
 
-namespace :admin do
-  # ....
-end
+  namespace :admin do
+    # ....
+  end
 
         NAMESPACE
+
+        inject_into_file "config/routes.rb",
+          content,
+          before: "end\n"
       end
 
 
@@ -40,9 +44,9 @@ end
         log :add_is_user_admin_check, ""
         content = <<-EOF
 
-def is_admin?
-  false
-end
+  def is_admin?
+    false
+  end
         EOF
 
         inject_into_file "app/models/user.rb",

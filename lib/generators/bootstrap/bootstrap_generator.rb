@@ -78,8 +78,8 @@ module Diesel
         log :customize_error_pages, ''
 
         meta_tags = <<-EOS
-<meta charset='utf-8' />
-<meta name='ROBOTS' content='NOODP' />
+  <meta charset='utf-8' />
+  <meta name='ROBOTS' content='NOODP' />
         EOS
 
         in_root do
@@ -143,11 +143,11 @@ module Diesel
         log :configure_app_generators, ''
         generators_config = <<-CON
 
-  # don't have rails create stylesheets or javascript files
-  config.generators do |g|
-    g.assets          false
-    g.helper          false
-  end
+    # don't have rails create stylesheets or javascript files
+    config.generators do |g|
+      g.assets          false
+      g.helper          false
+    end
 
         CON
 

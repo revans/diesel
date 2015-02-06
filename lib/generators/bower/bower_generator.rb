@@ -19,8 +19,8 @@ module Diesel
       def create_bowerrc
         create_file ".bowerrc", <<-BOW
 {
-"directory": "vendor/assets/bower_components",
-"json": "bower.json"
+  "directory": "vendor/assets/bower_components",
+  "json": "bower.json"
 }
         BOW
       end
@@ -28,22 +28,22 @@ module Diesel
       def run_bower_init
         create_file "bower.json", <<-BOWERJSON
 {
-"name": "#{application_name}",
-"version": "0.0.01",
-"authors": [
-  "#{`whoami`.chomp}"
-],
-"license": "MIT",
-"ignore": [
-  "**/.*",
-  "node_modules",
-  "bower_components",
-  "vendor/assets/bower_components",
-  "test",
-  "tests"
-],
-"dependencies": {
-}
+  "name": "#{application_name}",
+  "version": "0.0.01",
+  "authors": [
+    "#{`whoami`.chomp}"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
 }
         BOWERJSON
       end

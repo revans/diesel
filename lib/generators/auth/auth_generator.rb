@@ -102,16 +102,16 @@ module Diesel
         log :add_auth_routes, ""
         auth_routes = <<-ROUTE
 
-# User Resource
-resources :users
+  # User Resource
+  resources :users
 
-# Login & Logout
-delete  "/logout",      to: "sessions#destroy",       as: :logout
-post    "/login",       to: "sessions#create",        as: :perform_login
-get     "/login",       to: "sessions#new",           as: :login
+  # Login & Logout
+  delete  "/logout",      to: "sessions#destroy",       as: :logout
+  post    "/login",       to: "sessions#create",        as: :perform_login
+  get     "/login",       to: "sessions#new",           as: :login
 
-# Default Route should go to the login page
-root "sessions#new"
+  # Default Route should go to the login page
+  root "sessions#new"
 
         ROUTE
 

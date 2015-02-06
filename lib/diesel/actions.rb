@@ -76,7 +76,7 @@ module Diesel
     def add_to_javascript_manifest(filename, options={})
       log :add_to_javascript_manifest, filename
 
-      sentinel = options.has_key?(:after) ? " //= require #{filename}\n" : "\n //= require #{filename}"
+      sentinel = options.has_key?(:after) ? "//= require #{filename}\n" : "\n//= require #{filename}"
 
       in_root do
         inject_into_file 'app/assets/javascripts/application.js', sentinel, options.merge(verobose: false)

@@ -46,12 +46,12 @@ module Diesel
       def add_reg_routes
         reg_routes = <<-ROUTE
 
-# regisration
-get     "/register",    to: "registrations#new",      as: :registration
-post    "/register",    to: "registrations#create",   as: :create_registration
+  # regisration
+  get     "/register",    to: "registrations#new",      as: :registration
+  post    "/register",    to: "registrations#create",   as: :create_registration
 
-# dashboard
-get     "/dashboard",   to: "dashboard#index",        as: :dashboard
+  # dashboard
+  get     "/dashboard",   to: "dashboard#index",        as: :dashboard
         ROUTE
 
         route reg_routes
