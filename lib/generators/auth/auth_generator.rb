@@ -29,19 +29,24 @@ module Diesel
         generate :model, "user",  "first_name:string",
                                   "last_name:string",
                                   "email:string:index",
+                                  "token:string:index",
                                   "password_digest:string"
 
         inject_into_file 'app/models/user.rb',
-        "  has_secure_password\n",
+        "  include Authentication\n",
         after: "class User < ActiveRecord::Base\n"
       end
 
 
       def copy_auth_files
         log :copy_auth_files, ""
+
+        # Model Concerns
+        copy_file "models/authentication.rb",             "app/models/concerns/authentication.rb"
+
         # Controllers
-        copy_file "controllers/sessions_controller.rb",  "app/controllers/sessions_controller.rb"
-        copy_file "controllers/users_controller.rb",     "app/controllers/users_controller.rb"
+        copy_file "controllers/sessions_controller.rb",   "app/controllers/sessions_controller.rb"
+        copy_file "controllers/users_controller.rb",      "app/controllers/users_controller.rb"
 
         # Views
         copy_file "views/sessions_new.html.erb",    "app/views/sessions/new.html.erb"
