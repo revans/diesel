@@ -19,20 +19,24 @@ module Diesel
         log :support_for_app_server, ""
 
         case options[:app_server]
-        when 'puma'
-          gem "puma"
-          template "config/puma.conf.erb",  'config/puma.conf'
-          copy_file "procfile.puma",        'Procfile'
+        when 'unicorn'
+          gem "unicorn"
+          template "config/unicorn.rb.erb", 'config/unicorn.rb'
+          copy_file "procfile.ubuntu",      'Procfile'
 
         when 'thin'
           gem "thin"
           template "config/thin.conf.erb",  'config/thin.conf'
           copy_file "procfile.thin",        'Procfile'
 
+        when 'passenger'
+          gem 'passenger'
+          copy_file "procfile.passenger",   'Procfile'
+
         else
-          gem "unicorn"
-          template "config/unicorn.rb.erb", 'config/unicorn.rb'
-          copy_file "procfile.ubuntu",      'Procfile'
+          gem "puma"
+          template "config/puma.conf.erb",  'config/puma.conf'
+          copy_file "procfile.puma",        'Procfile'
 
         end
       end

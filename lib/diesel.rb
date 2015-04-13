@@ -14,6 +14,8 @@ require 'generators/bootstrap/bootstrap_generator'
 require 'generators/angular/angular_generator'
 require 'generators/rails_gem/rails_gem_generator'
 
+require 'generators/normalize_timezone/timezone_generator'
+
 
 # require 'generators/frontend/install_generator'
 

@@ -1,1 +1,1 @@
-puma: bundle exec thin --config config/thin.conf
+web: bundle exec thin --config config/thin.conf
