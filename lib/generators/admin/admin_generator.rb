@@ -35,7 +35,7 @@ module Diesel
         NAMESPACE
 
         inject_into_file "config/routes.rb",
-          content,
+          admin_namespace,
           before: "end\n"
       end
 
