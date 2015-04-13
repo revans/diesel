@@ -2,7 +2,7 @@ module Diesel
   module VERSION
     MAJOR = 0
     MINOR = 0
-    TINY  = 29
+    TINY  = 30
     PRE   = nil
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
