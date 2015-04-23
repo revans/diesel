@@ -3,7 +3,7 @@ require_relative '../../diesel/actions'
 
 module Diesel
   module Generators
-    class CommentGenerator < ::Rails::Generators::Base
+    class CommentsGenerator < ::Rails::Generators::Base
       include ::Diesel::Actions
 
       desc "Comments Support"
