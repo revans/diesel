@@ -41,14 +41,14 @@ module Diesel
           gem 'rails_12factor'
           gem "rollbar"
           gem 'newrelic_rpm'
-
-          gem 'mandrill-api', require: 'mandrill'
-          # gem 'zero_push'
-
-          gem 'sidekiq'
-          gem 'sinatra'
-          gem "rack-timeout"
         end
+
+        gem 'mandrill-api', require: 'mandrill'
+        # gem 'zero_push'
+
+        gem 'sidekiq'
+        gem 'sinatra'
+        gem "rack-timeout"
 
         # Mandrill Config
         mandrill_config = <<-MANDRILL
