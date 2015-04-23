@@ -24,8 +24,8 @@ module Diesel
       def add_redis_conf
         log :add_redis_conf, ""
 
-        template  "config/initializer/redis.rb.erb",
-                  "config/initializer/redis.rb",
+        template  "config/initializers/redis.rb.erb",
+                  "config/initializers/redis.rb",
                   force: true
       end
 
@@ -48,6 +48,40 @@ module Diesel
           gem 'sidekiq'
           gem 'sinatra'
           gem "rack-timeout"
+        end
+
+        # Mandrill Config
+        mandrill_config = <<-MANDRILL
+
+  # Mandrill Configuration
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:                'smtp.mandrillapp.com',
+    port:                   587,
+    domain:                 'app_name.herokuapp.com',
+    user_name:              ENV['MANDRILL_USERNAME'],
+    password:               ENV['MANDRILL_APIKEY'],
+    authentication:         'plain',
+    enable_starttls_auto:   true
+  }
+
+        MANDRILL
+
+        application(nil, env: "production") do
+          mandrill_config
+        end
+      end
+
+      def url_options
+        %w(test development production).each do |env|
+          application(nil, env: env) do
+            <<-CONFIG
+
+  # Setup for Mailing links
+  Rails.application.routes.default_url_options[:host] = 'app_name.herokuapp.com'
+
+            CONFIG
+          end
         end
       end
 
