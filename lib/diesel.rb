@@ -15,6 +15,10 @@ require 'generators/angular/angular_generator'
 require 'generators/rails_gem/rails_gem_generator'
 
 require 'generators/normalize_timezone/timezone_generator'
+require 'generators/likable/likable_generator'
+require 'generators/herokuize/herokuize_generator'
+require 'generators/comments/comments_generator'
+require 'generators/fulltext_search/fulltext_search_generator'
 
 
 # require 'generators/frontend/install_generator'
