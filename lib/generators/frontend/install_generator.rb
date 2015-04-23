@@ -28,18 +28,18 @@ module Diesel
 
           inject_into_file "app/controllers/application_controller.rb",
             "\n  include Settings\n",
-            after: "protect_from_forgery with: :exception\n"
+            before: "protect_from_forgery with: :exception\n"
 
         end
 
-        def ui_helper
-          log :ui_helper, ''
-          copy_file "helpers/ui_helper.rb",
-                    'app/helpers/ui_helper.rb'
-
-          copy_file "helpers/ui_helper_test.rb",
-                    'test/helpers/ui_helper_test.rb'
-        end
+        # def ui_helper
+        #   log :ui_helper, ''
+        #   copy_file "helpers/ui_helper.rb",
+        #             'app/helpers/ui_helper.rb'
+        #
+        #   copy_file "helpers/ui_helper_test.rb",
+        #             'test/helpers/ui_helper_test.rb'
+        # end
 
         def configure_app_generators
           log :configure_app_generators, ''
@@ -56,19 +56,19 @@ module Diesel
           application generators_config
         end
 
-        def copy_stylesheet_helpers
-          log :copy_stylesheet_helpers, ''
-          mkdir_p "app/assets/stylesheets/helpers"
-
-          %w|
-              colors
-              color_wheel
-              mixins|.each do |css|
-
-            copy_file "assets/stylesheets/#{css}.scss",
-                      "app/assets/stylesheets/helpers/#{css}.scss"
-          end
-        end
+        # def copy_stylesheet_helpers
+        #   log :copy_stylesheet_helpers, ''
+        #   mkdir_p "app/assets/stylesheets/helpers"
+        #
+        #   %w|
+        #       colors
+        #       color_wheel
+        #       mixins|.each do |css|
+        #
+        #     copy_file "assets/stylesheets/#{css}.scss",
+        #               "app/assets/stylesheets/helpers/#{css}.scss"
+        #   end
+        # end
 
         def install_normalize
           log :install_normalize, ''

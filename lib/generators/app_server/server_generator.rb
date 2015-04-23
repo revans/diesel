@@ -29,14 +29,14 @@ module Diesel
           template "config/thin.conf.erb",  'config/thin.conf'
           copy_file "procfile.thin",        'Procfile'
 
-        when 'passenger'
-          gem 'passenger'
-          copy_file "procfile.passenger",   'Procfile'
-
-        else
+        when 'puma'
           gem "puma"
           template "config/puma.conf.erb",  'config/puma.conf'
           copy_file "procfile.puma",        'Procfile'
+
+        else
+          gem 'passenger'
+          copy_file "procfile.passenger",   'Procfile'
 
         end
       end
@@ -68,6 +68,12 @@ module Diesel
       def add_logger_sync_for_foreman
         log :add_logger_sync_for_foreman, ""
         prepend_file "config/environments/development.rb", "STDOUT.sync = true\n\n"
+      end
+
+      def add_server_bash_file
+        log :add_server_bash_file
+        copy_file "bin/server", "bin/server"
+        in_root { run "chmod +x bin/server" }
       end
 
       def setup_foreman

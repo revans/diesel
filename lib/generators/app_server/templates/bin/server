@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
+rails s webrick &
+sleep 2
+browser-sync start --files "app/views/**/*.erb, app/assets/stylesheets/**/*.scss, app/assets/stylesheets/**/*.sass, app/assets/**.coffee" --proxy "localhost:3000" --reload-delay 1000 --no-open
