@@ -57,18 +57,18 @@ module Diesel
         copy_file "controllers/session_authentication.rb",
             'app/controllers/concerns/session_authentication.rb'
 
-        copy_file "controllers/api_authentication.rb",
-            'app/controllers/concerns/api_authentication.rb'
+        # copy_file "controllers/api_authentication.rb",
+        #     'app/controllers/concerns/api_authentication.rb'
 
-        copy_file "controllers/api_versioning.rb",
-            'app/controllers/concerns/api_versioning.rb'
+        # copy_file "controllers/api_versioning.rb",
+        #     'app/controllers/concerns/api_versioning.rb'
 
         # Tests
         copy_file "test/session_auth_test_helper.rb",
                   'test/support/session_auth_test_helper.rb'
 
-        copy_file "test/api_helper.rb",
-                  'test/support/api_helper.rb'
+        # copy_file "test/api_helper.rb",
+        #           'test/support/api_helper.rb'
 
         copy_file "test/authorization_helper.rb",
                   'test/support/authorization_helper.rb'
@@ -79,7 +79,7 @@ module Diesel
             after: "require 'rails/test_help'\n"
 
         inject_into_file 'test/test_helper.rb',
-            "\nclass ActionController::TestCase\n  include ::SessionAuthTestHelper, ::ApiHelper\nend",
+            "\nclass ActionController::TestCase\n  include ::SessionAuthTestHelper\nend",
             after: "end\n"
 
         copy_file "test/models/user_test.rb",
@@ -100,7 +100,7 @@ module Diesel
         copy_file "test/fixtures/users.yml",
                   "test/fixtures/users.yml", force: true
 
-        copy_file "config/api.yml", "config/api.yml"
+        # copy_file "config/api.yml", "config/api.yml"
       end
 
       def add_auth_routes
@@ -149,24 +149,7 @@ module Diesel
       def include_session_auth_concern
         log :include_session_auth_concern, ""
         content = <<-EOF
-  include SessionAuthentication,
-          ApiAuthentication,
-          ApiVersioning
-
-  def json_requested?
-    request.format.json?
-  end
-
-  def render_unauthorized
-    self.headers['WWW-Authenticate'] = "Token realm='\#{api_config['company_name']}'"
-    render json: 'Bad credentials', status: 401
-  end
-
-  private
-
-  def api_config
-    ::Rails.application.config_for(:api)
-  end
+  include SessionAuthentication
         EOF
 
         insert_into_file("app/controllers/application_controller.rb",

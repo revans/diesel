@@ -19,8 +19,8 @@ module Diesel
         log :copy_concerns, ''
 
         # Model
-        copy_file "app/models/concerns/likale.rb",
-                  "app/models/concerns/likale.rb"
+        copy_file "app/models/concerns/likable.rb",
+                  "app/models/concerns/likable.rb"
       end
 
       def generate_likes

@@ -3,11 +3,15 @@ module Settings
   extend ActiveSupport::Concern
 
   included do
-    helper_method :app_name, :company_name, :settings, :year, :page_title
+    helper_method :app_name, :company_name, :settings, :year, :page_title, :api_name
   end
 
   def app_name
     @app_name ||= ''
+  end
+
+  def api_name
+    @api_name ||= ''
   end
 
   def company_name

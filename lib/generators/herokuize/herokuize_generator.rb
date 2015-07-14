@@ -58,7 +58,7 @@ module Diesel
   config.action_mailer.smtp_settings = {
     address:                'smtp.mandrillapp.com',
     port:                   587,
-    domain:                 'app_name.herokuapp.com',
+    domain:                 ENV['DOMAIN_NAME'],
     user_name:              ENV['MANDRILL_USERNAME'],
     password:               ENV['MANDRILL_APIKEY'],
     authentication:         'plain',

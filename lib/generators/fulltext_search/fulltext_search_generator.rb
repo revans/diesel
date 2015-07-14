@@ -6,7 +6,7 @@ module Diesel
     class FullTextSearchGenerator < Rails::Generators::Base
       include ::Diesel::Actions
 
-      desc "Full Text Searching"
+      desc "Full Text Searching: Adds extensions and gem."
 
       source_root File.expand_path('../templates', __FILE__)
       class_option :template_engine
