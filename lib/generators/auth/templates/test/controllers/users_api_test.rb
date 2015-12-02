@@ -10,8 +10,7 @@ class UsersApiTest < ActionController::TestCase
 
   def user
     @user ||= User.create(
-      first_name:             'Donald',
-      last_name:              'Cerrone',
+      name:                   'Donald Cerrone',
       email:                  'cowboy@cerrone.com',
       password:               '123456',
       password_confirmation:  '123456',
@@ -20,12 +19,12 @@ class UsersApiTest < ActionController::TestCase
 
   def test_updating_profile_via_json
     patch :update, id: user.id, user: {
-      first_name: 'Bob'
+      name: 'Bob'
     }, format: :json
 
     assert_response :success
     assert_template :show
-    assert_equal 'Bob', assigns(:user).first_name
+    assert_equal 'Bob', assigns(:user).name
   end
 
   def test_update_failure_via_json

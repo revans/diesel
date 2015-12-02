@@ -15,23 +15,12 @@ class UsersControllerTest < ActionController::TestCase
 
   def test_updating_profile
     patch :update, id: @user.id, user: {
-      first_name: 'Bob'
+      name: 'Joe'
     }
 
+    assert_equal 'Joe', assigns(:user).name
     assert_redirected_to edit_user_url(assigns(:user))
-    assert_equal 'Bob', assigns(:user).first_name
   end
-
-  def test_updating_profile_via_json
-    patch :update, id: @user.id, user: {
-      last_name: 'Smith'
-    }, format: :json
-
-    assert_response :success
-    assert_template :show
-    assert_equal 'Smith', assigns(:user).last_name
-  end
-
 
   def test_update_failure
     patch :update, id: @user.id, user: {
@@ -43,14 +32,4 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal "Password confirmation doesn't match Password", assigns(:user).errors.full_messages.first
   end
 
-  def test_update_failure_via_json
-    patch :update, id: @user.id, user: {
-      password:               '123456',
-      password_confirmation:  '123'
-    }, format: :json
-
-    assert_response 422
-    expects = {"password_confirmation"=>["doesn't match Password"]}
-    assert_equal expects, JSON.parse(@response.body)
-  end
 end

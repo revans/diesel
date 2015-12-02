@@ -8,9 +8,9 @@ module Authentication
     has_secure_password
 
     # Validations
-    validates_uniqueness_of :email
-    validates_presence_of   :token
-    validates_length_of     :password, minimum: 6
+    validates :email, uniqueness: { case_sensitive: false }
+    validates :token, presence: true
+    validates :password, length: { minimum: 6, allow_blank: true }
 
     # Before Validation Filters
     before_validation :ensure_lowercase_email
@@ -55,4 +55,7 @@ module Authentication
     self.token ||= ::SecureRandom.hex(22)
   end
 
+  def password_has_changed?
+    return false if self.password.blank?
+  end
 end

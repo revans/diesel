@@ -21,7 +21,7 @@ class SessionsControllerTest < ActionController::TestCase
       password: 123456,
     }
 
-    assert_redirected_to dashboard_url
+    assert_redirected_to root_url
     assert assigns(:user)
 
     assert @controller.current_user

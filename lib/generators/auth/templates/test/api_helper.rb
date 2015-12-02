@@ -11,7 +11,6 @@ module ApiHelper
     parse @response.body
   end
 
-
   def to_object(hash)
     ::OpenStruct.new(hash)
   end

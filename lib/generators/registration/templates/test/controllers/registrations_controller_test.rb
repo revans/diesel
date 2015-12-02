@@ -10,8 +10,7 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   def test_registration
     post :create, user: {
-      first_name:             'Bill',
-      last_name:              'Example',
+      name:                   'Bill Example',
       email:                  'bill@example.com',
       password:               '123456',
       password_confirmation:  '123456',
@@ -23,8 +22,7 @@ class RegistrationsControllerTest < ActionController::TestCase
 
   def test_failed_registration
     post :create, user: {
-      first_name:             'Bill',
-      last_name:              'Example',
+      name:                   'Bill Example',
       email:                  'bill@example.com',
       password:               '123456',
       password_confirmation:  '1234567',

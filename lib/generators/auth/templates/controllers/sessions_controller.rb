@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if @user.try(:authenticate, params[:user][:password])
         set_user_session(@user)
-        format.html { redirect_to dashboard_url, notice: 'You are now logged in.' }
+        format.html { redirect_to root_url, notice: 'You are now logged in.' }
         format.json { render template: 'users/show', status: :created, location: @user }
       else
         clean_user_session

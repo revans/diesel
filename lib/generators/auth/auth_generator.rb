@@ -26,8 +26,7 @@ module Diesel
 
       def generate_auth_model
         log :generate_auth_model, ""
-        generate :model, "user",  "first_name:string",
-                                  "last_name:string",
+        generate :model, "user",  "name:string",
                                   "email:string:index",
                                   "token:string:index",
                                   "password_digest:string"
@@ -149,12 +148,16 @@ module Diesel
       def include_session_auth_concern
         log :include_session_auth_concern, ""
         content = <<-EOF
+  protect_from_forgery with: :exception, unless: -> { request.format.json? }
   include SessionAuthentication
         EOF
 
-        insert_into_file("app/controllers/application_controller.rb",
-                         content,
-                         after: "protect_from_forgery with: :exception\n\n")
+        replace_in_file 'app/controllers/application_controller.rb',
+            'protect_from_forgery with: :exception', content
+
+        # insert_into_file("app/controllers/application_controller.rb",
+        #                  content,
+        #                  after: "protect_from_forgery with: :exception\n\n")
       end
 
       def copy_locale

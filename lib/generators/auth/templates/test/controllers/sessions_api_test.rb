@@ -10,8 +10,7 @@ class SessionsApiTest < ActionController::TestCase
 
   def user
     @user ||= User.create(
-      first_name:             'Donald',
-      last_name:              'Cerrone',
+      name:                   'Donald Cerrone',
       email:                  'cowboy@cerrone.com',
       password:               '123456',
       password_confirmation:  '123456',
@@ -26,8 +25,7 @@ class SessionsApiTest < ActionController::TestCase
     }
 
     assert_response :success
-    assert_equal 'Donald',              parse_body['first_name']
-    assert_equal 'Cerrone',             parse_body['last_name']
+    assert_equal 'Donald Cerrone',      parse_body['name']
     assert_equal 'cowboy@cerrone.com',  parse_body['email']
 
     refute_nil parse_body['id']
@@ -42,7 +40,7 @@ class SessionsApiTest < ActionController::TestCase
       password: '1234567'
     }
 
-    assert_equal 'Failed login', parse_body['error']
+    assert_equal 'Failed to login', parse_body['error']
     assert_nil session[:user_id]
   end
 

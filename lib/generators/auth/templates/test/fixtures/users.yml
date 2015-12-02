@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 bob:
-  first_name: Bob
-  last_name: Smith
+  name: Bob Smith
   email: bob@example.com
   # password is 123456
   password_digest: "$2a$04$gXHtoIIIZQ8rhTiZVKJ1COdJumRG/eih4Uxf5S0oz.sxFpsLU9ksm"
 
 mary:
-  first_name: Mary
-  last_name: Smith
+  name: Mary Smith
   email: mary@example.com
   # password is 123456
   password_digest: "$2a$04$gXHtoIIIZQ8rhTiZVKJ1COdJumRG/eih4Uxf5S0oz.sxFpsLU9ksm"

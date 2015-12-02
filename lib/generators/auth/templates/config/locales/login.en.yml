@@ -9,6 +9,7 @@ en:
   login:
     form:
       label:
+        name:       'First & Last Name'
         first_name: 'First Name'
         last_name:  'Last Name'
         email:      'Email Address'

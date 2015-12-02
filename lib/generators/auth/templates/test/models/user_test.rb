@@ -3,8 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   def user
     @user ||= User.create!(
-      first_name:             'Test',
-      last_name:              'Example',
+      name:                   'Test Example',
       email:                  'test@example.com',
       password:               '123456',
       password_confirmation:  '123456'
@@ -16,8 +15,7 @@ class UserTest < ActiveSupport::TestCase
       user # creates the user
 
       # test attributes
-      assert_equal 'Test',              user.first_name
-      assert_equal 'Example',           user.last_name
+      assert_equal 'Test Example',      user.name
       assert_equal 'test@example.com',  user.email
       assert user.password_digest
     end
